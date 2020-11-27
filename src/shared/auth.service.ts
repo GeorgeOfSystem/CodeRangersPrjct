@@ -37,10 +37,10 @@ export class AuthService {
     const token = localStorage.getItem("auth");
     return !!token;
   }
-  /*
+  
   public logout(): void {
     localStorage.removeItem("auth");
     localStorage.removeItem("userId");
     this.router.navigate(["login"]);
-  }*/
+  }
 }
