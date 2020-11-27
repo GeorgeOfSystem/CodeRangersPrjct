@@ -3,6 +3,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { AppComponent } from "./app.component";
 import { Routes, RouterModule } from "@angular/router";
+import { AuthService } from "./shared/auth.service";
 
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
@@ -16,6 +17,7 @@ const routes: Routes = [
 @NgModule({
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes)],
   declarations: [AppComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [AuthService]
 })
 export class AppModule {}
