@@ -1,3 +1,12 @@
-<p>
-historial works!
-</p>
+<mat-tab-group mat-align-tabs="center">
+	<mat-tab label="En espera">
+		<app-espera></app-espera>
+	</mat-tab>
+	<mat-tab label="Aprobado">
+		<app-aprobado></app-aprobado>
+	</mat-tab>
+	<mat-tab label="Rechazado">
+		<app-rechazado></app-rechazado>
+	</mat-tab>
+</mat-tab-group>
+<router-outlet></router-outlet>
