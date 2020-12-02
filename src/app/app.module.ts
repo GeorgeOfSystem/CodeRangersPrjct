@@ -1,9 +1,8 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { AppComponent } from "./app.component";
-import { MatCardModule } from "@angular/material/card";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
 import { Routes, RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { FormsModule } from "@angular/forms";
@@ -21,6 +20,11 @@ const routes: Routes = [
     path: "home",
     loadChildren: () =>
       import("./modules/home/home.module").then(m => m.HomeModule)
+  },
+  {
+    path: "auditHome",
+    loadChildren: () =>
+      import("./modules/audit-home/audit-home.module").then(m => m.AuditHomeModule)
   }
 ];
 

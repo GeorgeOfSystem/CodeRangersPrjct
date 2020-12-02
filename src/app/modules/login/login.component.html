@@ -1,41 +1,52 @@
-<mat-card class="example-card" style="width:900px">
-	<mat-card-header style="padding-left: 180px">
-		<mat-card-title>LOGIN</mat-card-title>
-	</mat-card-header>
-	<mat-card-content>
-		<form #form="ngForm" style="display: flex; flex-direction: column;">
-			<mat-form-field>
-				<mat-label>E-mail</mat-label>
-				<input matInput
-               type="text"
-               name="email"
-               ngModel
-               #emailUI="ngModel"
-               required>
+
+<div style="display: flex; flex-direction: column; max-width: 800px;">
+	<img src="https://www.ovt.mintrabajo.gob.bo/assets/images/logo-mteps.png" style="width: 200px; align-self: center;">
+	&nbsp;
+	<h1 style="margin-top: 20px; font-family: 'Times New Roman', Times, serif; text-align: center;"><b>Presentación y Aprobación de Programas de Seguridad y Salud en el Trabajo
+	</b></h1>
+
+	<mat-card class="example-card" style="width:300px; align-self: center;">
+		<mat-card-header>
+			<mat-card-title style="font-family: 'Times New Roman', Times, serif;">LOGIN</mat-card-title>
+		</mat-card-header>
+		<mat-card-content>
+			<form #form="ngForm" style="display: flex; flex-direction: column;">
+				<mat-form-field style="padding-top: 20px;">
+					<mat-label>E-mail</mat-label>
+					<input matInput
+				type="text"
+				name="email"
+				ngModel
+				#emailUI="ngModel"
+				required>
+					
+				</mat-form-field>
 				<div *ngIf="emailUI.invalid && (emailUI.touched || emailUI.dirty)" class="alert alert-danger">
 					<div *ngIf="emailUI.errors.required">
 						Name is required
 					</div>
 				</div>
-			</mat-form-field>
-			<mat-form-field>
-				<mat-label>Password</mat-label>
-				<input matInput
-               type="password"
-               name="password"
-               ngModel
-               #passwordUI="ngModel"
-               required>
+				<mat-form-field style="padding-top: 20px;">
+					<mat-label>Password</mat-label>
+					<input matInput
+				type="password"
+				name="password"
+				ngModel
+				#passwordUI="ngModel"
+				required>
+					
+				</mat-form-field>
 				<div *ngIf="passwordUI.invalid && (passwordUI.touched || passwordUI.dirty)" class="alert alert-danger">
 					<div *ngIf="passwordUI.errors.required">
 						Name is required
 					</div>
 				</div>
-			</mat-form-field>
-		</form>
-	</mat-card-content>
-	<mat-card-actions style="text-align:center">
-		<button mat-button [disabled]="form.invalid" (click)="onLogin(form)">Login</button>
-		<button mat-button  (click)="onRegister()" >Registrarse</button>
-	</mat-card-actions>
-</mat-card>
+			</form>
+		</mat-card-content>
+		<mat-card-actions style="text-align:center">
+			<button mat-button [disabled]="form.invalid" (click)="onLogin(form)">Login</button>
+			<button mat-button  (click)="onRegister()" >Registrarse</button>
+		</mat-card-actions>
+	</mat-card>
+
+</div>
