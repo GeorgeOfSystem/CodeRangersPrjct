@@ -1,11 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { InicioComponent } from './inicio.component';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { InicioComponent } from "./inicio.component";
+import { InicioRoutingModule } from "./inicio-routing.module";
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule, InicioRoutingModule],
   declarations: [InicioComponent]
 })
-export class InicioModule { }
+export class InicioModule {}

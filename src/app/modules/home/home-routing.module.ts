@@ -7,6 +7,12 @@ const routes: Routes = [
     path: "",
     component: HomeComponent,
     children: [
+      { path: "", redirectTo: "inicio", pathMatch: "full" },
+      {
+        path: "inicio",
+        loadChildren: () =>
+          import("./modules/inicio/inicio.module").then(m => m.InicioModule)
+      },
       {
         path: "historial",
         loadChildren: () =>
