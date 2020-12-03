@@ -1,4 +1,8 @@
 import { Component, OnInit } from "@angular/core";
+import { Subscription } from "rxjs";
+import { AuthService } from "src/app/shared/services/auth.service";
+import { BusinessLayerService } from 'src/app/shared/services/business-layer.service';
+
 
 export interface PeriodicElement {
   name: string;
@@ -34,11 +38,55 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ["./espera.component.css"]
 })
 export class EsperaComponent implements OnInit {
-  displayedColumns: string[] = ["position", "name", "weight", "symbol"];
+  displayedColumns: string[] = [
+    "id",
+    "sucursal",
+    "negocio",
+    "estado",
+    "detalles",
+    "delete"
+  ];
 
   dataSource = ELEMENT_DATA;
 
-  constructor() {}
+  espera = [];
+  esperaGetSubs: Subscription;
+  esperaDeleteSubs: Subscription;
+  constructor(
+    private authService: AuthService,
+    private b_Layer : BusinessLayerService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loadProduct();
+  }
+
+  loadProduct(): void {
+    this.espera = [];
+    const userId = this.authService.getUserId();
+    this.esperaGetSubs = this.b_Layer
+      .getProductsById(userId)
+      .subscribe(res => {
+        Object.entries(res).map((p: any) =>
+          this.espera.push({ id: p[0], ...p[1] })
+        );
+      });
+  }
+
+  onDelete(id: any): void {
+    this.esperaDeleteSubs = this.b_Layer.deleteProduct(id).subscribe(
+      res => {
+        console.log("RESPONSE: ", res);
+        this.loadProduct();
+      },
+      err => {
+        console.log("ERROR: ");
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    this.esperaGetSubs ? this.esperaGetSubs.unsubscribe() : "";
+    this.esperaDeleteSubs ? this.esperaDeleteSubs.unsubscribe() : "";
+  }
 }

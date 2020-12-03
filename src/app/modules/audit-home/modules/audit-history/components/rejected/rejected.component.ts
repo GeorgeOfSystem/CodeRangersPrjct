@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { BusinessLayerService } from 'src/app/shared/services/business-layer.service';
 
 export interface PeriodicElement {
   name: string;
@@ -7,31 +9,24 @@ export interface PeriodicElement {
   symbol: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    position: 1,
-    name: "Iglesia San Miguel",
-    weight: "Religión",
-    symbol: "Rechazado"
-  },
-  {
-    position: 2,
-    name: "MegaCenter Irpavi",
-    weight: "Cine",
-    symbol: "Rechazado"
-  }
-];
-
 @Component({
   selector: 'rejected',
   templateUrl: './rejected.component.html',
   styleUrls: ['./rejected.component.scss']
 })
 export class RejectedComponent implements OnInit {
-  displayedColumns: string[] = ["position", "name", "weight", "symbol","document"];
-  dataSource = ELEMENT_DATA;
+  products = [];
+  productGetSubs: Subscription;
+  displayedColumns: string[];
+  dataSource;
+  constructor( private b_Layer: BusinessLayerService) {}
 
-  constructor() {}
-
-  ngOnInit() {}
+  ngOnInit() {
+    this.products = [];
+    this.productGetSubs = this.b_Layer.getProducts().subscribe(res => {
+      Object.entries(res).map((p: any) => this.products.push({id: p[0], ...p[1]}));
+      this.displayedColumns = ["ownerId", "nombre", "negocio", "estado","document"];
+      this.dataSource = this.products.filter( s => s.estado == "Rechazado" );
+    });
+  }
 }

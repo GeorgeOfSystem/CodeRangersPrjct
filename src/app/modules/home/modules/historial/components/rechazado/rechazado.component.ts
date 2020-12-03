@@ -1,4 +1,8 @@
 import { Component, OnInit } from "@angular/core";
+import { Subscription } from "rxjs";
+import { AuthService } from "src/app/shared/services/auth.service";
+import { BusinessLayerService } from 'src/app/shared/services/business-layer.service';
+
 
 export interface PeriodicElement {
   name: string;
@@ -28,11 +32,56 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ["./rechazado.component.css"]
 })
 export class RechazadoComponent implements OnInit {
-  displayedColumns: string[] = ["position", "name", "weight", "symbol"];
+  displayedColumns: string[] = [
+    "id",
+    "sucursal",
+    "negocio",
+    "estado",
+    "detalles",
+    "delete"
+  ];
 
   dataSource = ELEMENT_DATA;
 
-  constructor() {}
+  rechazados = [];
+  rechazadoGetSubs: Subscription;
+  rechazadoDeleteSubs: Subscription;
+  constructor(
+    private authService: AuthService,
+    private b_Layer: BusinessLayerService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loadProduct();
+  }
+
+  loadProduct(): void {
+    this.rechazados = [];
+    const userId = this.authService.getUserId();
+    this.rechazadoGetSubs = this.b_Layer
+      .getProductsById(userId)
+      .subscribe(res => {
+        Object.entries(res).map((p: any) =>
+          this.rechazados.push({ id: p[0], ...p[1] })
+        );
+      });
+  }
+
+  onDelete(id: any): void {
+    this.rechazadoDeleteSubs = this.b_Layer
+      .deleteProduct(id)
+      .subscribe(
+        res => {
+          console.log("RESPONSE: ", res);
+          this.loadProduct();
+        },
+        err => {
+          console.log("ERROR: ");
+        }
+      );
+  }
+
+  ngOnDestroy() {
+    this.rechazadoGetSubs ? this.rechazadoGetSubs.unsubscribe() : "";
+  }
 }

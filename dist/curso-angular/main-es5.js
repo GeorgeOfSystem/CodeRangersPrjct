@@ -3658,9 +3658,21 @@
       /* harmony import */
 
 
-      var _shared_auth_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
-      /*! ../shared/auth.service */
-      "./src/shared/auth.service.ts");
+      var _shared_services_auth_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! ./shared/services/auth.service */
+      "./src/app/shared/services/auth.service.ts");
+      /* harmony import */
+
+
+      var _shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      /*! ./shared/services/business-layer.service */
+      "./src/app/shared/services/business-layer.service.ts");
+      /* harmony import */
+
+
+      var _shared_services_data_layer_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+      /*! ./shared/services/data-layer.service */
+      "./src/app/shared/services/data-layer.service.ts");
 
       var routes = [{
         path: "",
@@ -3671,7 +3683,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | modules-login-login-module */
-          [__webpack_require__.e("default~modules-audit-history-audit-history-module~modules-historial-historial-module~modules-login-~d4b24c77"), __webpack_require__.e("modules-login-login-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~modules-aprobacion-aprobacion-module~modules-audit-history-audit-history-module~modules-hist~382a5ff9"), __webpack_require__.e("modules-login-login-module")]).then(__webpack_require__.bind(null,
           /*! ./modules/login/login.module */
           "./src/app/modules/login/login.module.ts")).then(function (m) {
             return m.LoginModule;
@@ -3713,7 +3725,7 @@
         factory: function AppModule_Factory(t) {
           return new (t || AppModule)();
         },
-        providers: [_shared_auth_service__WEBPACK_IMPORTED_MODULE_8__["AuthService"]],
+        providers: [_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_8__["AuthService"], _shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_9__["BusinessLayerService"], _shared_services_data_layer_service__WEBPACK_IMPORTED_MODULE_10__["DataLayerService"]],
         imports: [[_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_3__["BrowserAnimationsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"].forRoot(routes), _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_6__["NgbModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"]]]
       });
 
@@ -3732,10 +3744,375 @@
           args: [{
             declarations: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]],
             imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_3__["BrowserAnimationsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"].forRoot(routes), _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_6__["NgbModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"]],
-            providers: [_shared_auth_service__WEBPACK_IMPORTED_MODULE_8__["AuthService"]],
+            providers: [_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_8__["AuthService"], _shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_9__["BusinessLayerService"], _shared_services_data_layer_service__WEBPACK_IMPORTED_MODULE_10__["DataLayerService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]]
           }]
         }], null, null);
+      })();
+      /***/
+
+    },
+
+    /***/
+    "./src/app/shared/services/auth.service.ts":
+    /*!*************************************************!*\
+      !*** ./src/app/shared/services/auth.service.ts ***!
+      \*************************************************/
+
+    /*! exports provided: AuthService */
+
+    /***/
+    function srcAppSharedServicesAuthServiceTs(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "AuthService", function () {
+        return AuthService;
+      });
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! @angular/core */
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+      /* harmony import */
+
+
+      var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! rxjs/operators */
+      "./node_modules/rxjs/_esm2015/operators/index.js");
+      /* harmony import */
+
+
+      var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ../../../environments/environment */
+      "./src/environments/environment.ts");
+      /* harmony import */
+
+
+      var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @angular/common/http */
+      "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @angular/router */
+      "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+
+      var AuthService = /*#__PURE__*/function () {
+        function AuthService(http, router) {
+          _classCallCheck(this, AuthService);
+
+          this.http = http;
+          this.router = router;
+          this.url = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].auth.apiBaseUrl;
+          this.key = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].auth.key;
+        }
+
+        _createClass(AuthService, [{
+          key: "login",
+          value: function login(body) {
+            var _this3 = this;
+
+            return this.http.post("".concat(this.url, "/v1/accounts:signInWithPassword?key=").concat(this.key), body).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (res) {
+              _this3.authSucess(res.idToken, res.localId);
+
+              return res;
+            }));
+          }
+        }, {
+          key: "authSucess",
+          value: function authSucess(token, userId) {
+            localStorage.setItem("auth", token);
+            localStorage.setItem("userId", userId);
+          }
+        }, {
+          key: "getToken",
+          value: function getToken() {
+            return localStorage.getItem("auth");
+          }
+        }, {
+          key: "getUserId",
+          value: function getUserId() {
+            return localStorage.getItem("userId");
+          }
+        }, {
+          key: "verifyLogged",
+          value: function verifyLogged() {
+            var token = localStorage.getItem("auth");
+            return !!token;
+          }
+        }, {
+          key: "logout",
+          value: function logout() {
+            localStorage.removeItem("auth");
+            localStorage.removeItem("userId");
+            this.router.navigate(["login"]);
+          }
+        }]);
+
+        return AuthService;
+      }();
+
+      AuthService.ɵfac = function AuthService_Factory(t) {
+        return new (t || AuthService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]));
+      };
+
+      AuthService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+        token: AuthService,
+        factory: AuthService.ɵfac
+      });
+      /*@__PURE__*/
+
+      (function () {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AuthService, [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+        }], function () {
+          return [{
+            type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]
+          }, {
+            type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]
+          }];
+        }, null);
+      })();
+      /***/
+
+    },
+
+    /***/
+    "./src/app/shared/services/business-layer.service.ts":
+    /*!***********************************************************!*\
+      !*** ./src/app/shared/services/business-layer.service.ts ***!
+      \***********************************************************/
+
+    /*! exports provided: BusinessLayerService */
+
+    /***/
+    function srcAppSharedServicesBusinessLayerServiceTs(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "BusinessLayerService", function () {
+        return BusinessLayerService;
+      });
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! @angular/core */
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+      /* harmony import */
+
+
+      var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ../../../environments/environment */
+      "./src/environments/environment.ts");
+      /* harmony import */
+
+
+      var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! @angular/common/http */
+      "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+      /* harmony import */
+
+
+      var _data_layer_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! ./data-layer.service */
+      "./src/app/shared/services/data-layer.service.ts");
+
+      var BusinessLayerService = /*#__PURE__*/function () {
+        function BusinessLayerService(http, data) {
+          _classCallCheck(this, BusinessLayerService);
+
+          this.http = http;
+          this.data = data;
+          this.url = _environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].app.apiBaseUrl;
+          this.products = [];
+        } //Create - Add form to the database
+
+
+        _createClass(BusinessLayerService, [{
+          key: "addProduct",
+          value: function addProduct(mensaje) {
+            var _this4 = this;
+
+            var isRepet = true;
+            this.products = [];
+            this.productGetSubs = this.data.getProducts().subscribe(function (res) {
+              Object.entries(res).map(function (p) {
+                return _this4.products.push(Object.assign({
+                  id: p[0]
+                }, p[1]));
+              });
+
+              _this4.products.forEach(function (element) {
+                if (mensaje == element) {
+                  return;
+                }
+              });
+            });
+            return this.http.post("".concat(this.url, "/historial.json"), mensaje);
+          } //Reed - get form from the database
+
+        }, {
+          key: "getProducts",
+          value: function getProducts() {
+            return this.data.getProducts();
+          } //get with ID
+
+        }, {
+          key: "getProductsById",
+          value: function getProductsById(id) {
+            return this.data.getProductsById(id);
+          } //Update - chage the information of the form [ ID needed ]
+
+        }, {
+          key: "updateProduct",
+          value: function updateProduct(id, mensaje) {
+            return this.data.updateProduct(id, mensaje);
+          } //Delete - remove the form from the database [ ID needed ]
+
+        }, {
+          key: "deleteProduct",
+          value: function deleteProduct(id) {
+            return this.data.deleteProduct(id);
+          }
+        }]);
+
+        return BusinessLayerService;
+      }();
+
+      BusinessLayerService.ɵfac = function BusinessLayerService_Factory(t) {
+        return new (t || BusinessLayerService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_data_layer_service__WEBPACK_IMPORTED_MODULE_3__["DataLayerService"]));
+      };
+
+      BusinessLayerService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+        token: BusinessLayerService,
+        factory: BusinessLayerService.ɵfac
+      });
+      /*@__PURE__*/
+
+      (function () {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](BusinessLayerService, [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+        }], function () {
+          return [{
+            type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]
+          }, {
+            type: _data_layer_service__WEBPACK_IMPORTED_MODULE_3__["DataLayerService"]
+          }];
+        }, null);
+      })();
+      /***/
+
+    },
+
+    /***/
+    "./src/app/shared/services/data-layer.service.ts":
+    /*!*******************************************************!*\
+      !*** ./src/app/shared/services/data-layer.service.ts ***!
+      \*******************************************************/
+
+    /*! exports provided: DataLayerService */
+
+    /***/
+    function srcAppSharedServicesDataLayerServiceTs(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "DataLayerService", function () {
+        return DataLayerService;
+      });
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! @angular/core */
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+      /* harmony import */
+
+
+      var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ../../../environments/environment */
+      "./src/environments/environment.ts");
+      /* harmony import */
+
+
+      var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! @angular/common/http */
+      "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+
+      var DataLayerService = /*#__PURE__*/function () {
+        function DataLayerService(http) {
+          _classCallCheck(this, DataLayerService);
+
+          this.http = http;
+          this.url = _environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].app.apiBaseUrl;
+        } //Create - Add form to the database
+
+
+        _createClass(DataLayerService, [{
+          key: "addProduct",
+          value: function addProduct(mensaje) {
+            return this.http.post("".concat(this.url, "/historial.json"), mensaje);
+          } //Reed - get form from the database
+
+        }, {
+          key: "getProducts",
+          value: function getProducts() {
+            return this.http.get("".concat(this.url, "/formularios.json"));
+          } //get with ID
+
+        }, {
+          key: "getProductsById",
+          value: function getProductsById(id) {
+            return this.http.get("".concat(this.url, "/historial.json?orderBy=\"ownerId\"&equalTo=\"").concat(id, "\"&print=pretty"));
+          } //Update - chage the information of the form [ ID needed ]
+
+        }, {
+          key: "updateProduct",
+          value: function updateProduct(id, mensaje) {
+            return this.http.put("".concat(this.url, "/historial/").concat(id, ".json"), mensaje);
+          } //Delete - remove the form from the database [ ID needed ]
+
+        }, {
+          key: "deleteProduct",
+          value: function deleteProduct(id) {
+            return this.http["delete"]("".concat(this.url, "/historial/").concat(id, ".json"));
+          }
+        }]);
+
+        return DataLayerService;
+      }();
+
+      DataLayerService.ɵfac = function DataLayerService_Factory(t) {
+        return new (t || DataLayerService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]));
+      };
+
+      DataLayerService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+        token: DataLayerService,
+        factory: DataLayerService.ɵfac
+      });
+      /*@__PURE__*/
+
+      (function () {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](DataLayerService, [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+        }], function () {
+          return [{
+            type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]
+          }];
+        }, null);
       })();
       /***/
 
@@ -3922,136 +4299,6 @@
        */
       // import 'intl';  // Run `npm install --save intl`.
 
-      /***/
-
-    },
-
-    /***/
-    "./src/shared/auth.service.ts":
-    /*!************************************!*\
-      !*** ./src/shared/auth.service.ts ***!
-      \************************************/
-
-    /*! exports provided: AuthService */
-
-    /***/
-    function srcSharedAuthServiceTs(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "AuthService", function () {
-        return AuthService;
-      });
-      /* harmony import */
-
-
-      var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! @angular/core */
-      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-      /* harmony import */
-
-
-      var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! rxjs/operators */
-      "./node_modules/rxjs/_esm2015/operators/index.js");
-      /* harmony import */
-
-
-      var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! ../environments/environment */
-      "./src/environments/environment.ts");
-      /* harmony import */
-
-
-      var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-      /*! @angular/common/http */
-      "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
-      /* harmony import */
-
-
-      var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-      /*! @angular/router */
-      "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
-
-      var AuthService = /*#__PURE__*/function () {
-        function AuthService(http, router) {
-          _classCallCheck(this, AuthService);
-
-          this.http = http;
-          this.router = router;
-          this.url = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].auth.apiBaseUrl;
-          this.key = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].auth.key;
-        }
-
-        _createClass(AuthService, [{
-          key: "login",
-          value: function login(body) {
-            var _this3 = this;
-
-            return this.http.post("".concat(this.url, "/v1/accounts:signInWithPassword?key=").concat(this.key), body).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (res) {
-              _this3.authSucess(res.idToken, res.localId);
-
-              return res;
-            }));
-          }
-        }, {
-          key: "authSucess",
-          value: function authSucess(token, userId) {
-            localStorage.setItem("auth", token);
-            localStorage.setItem("userId", userId);
-          }
-        }, {
-          key: "getToken",
-          value: function getToken() {
-            return localStorage.getItem("auth");
-          }
-        }, {
-          key: "getUserId",
-          value: function getUserId() {
-            return localStorage.getItem("userId");
-          }
-        }, {
-          key: "verifyLogged",
-          value: function verifyLogged() {
-            var token = localStorage.getItem("auth");
-            return !!token;
-          }
-        }, {
-          key: "logout",
-          value: function logout() {
-            localStorage.removeItem("auth");
-            localStorage.removeItem("userId");
-            this.router.navigate(["login"]);
-          }
-        }]);
-
-        return AuthService;
-      }();
-
-      AuthService.ɵfac = function AuthService_Factory(t) {
-        return new (t || AuthService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]));
-      };
-
-      AuthService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
-        token: AuthService,
-        factory: AuthService.ɵfac
-      });
-      /*@__PURE__*/
-
-      (function () {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AuthService, [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
-        }], function () {
-          return [{
-            type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]
-          }, {
-            type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]
-          }];
-        }, null);
-      })();
       /***/
 
     },

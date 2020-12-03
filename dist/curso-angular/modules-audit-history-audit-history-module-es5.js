@@ -1218,13 +1218,25 @@
       /* harmony import */
 
 
-      var _angular_material_table__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      var src_app_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! src/app/shared/services/auth.service */
+      "./src/app/shared/services/auth.service.ts");
+      /* harmony import */
+
+
+      var src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! src/app/shared/services/business-layer.service */
+      "./src/app/shared/services/business-layer.service.ts");
+      /* harmony import */
+
+
+      var _angular_material_table__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
       /*! @angular/material/table */
       "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/table.js");
       /* harmony import */
 
 
-      var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! @angular/router */
       "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 
@@ -1394,23 +1406,62 @@
       }];
 
       var WaitingComponent = /*#__PURE__*/function () {
-        function WaitingComponent() {
+        function WaitingComponent(authService, b_Layer) {
           _classCallCheck(this, WaitingComponent);
 
-          this.displayedColumns = ["position", "name", "weight", "symbol", "document"];
+          this.authService = authService;
+          this.b_Layer = b_Layer;
+          this.displayedColumns = ["id", "sucursal", "negocio", "estado", "detalles", "delete"];
           this.dataSource = ELEMENT_DATA;
+          this.espera = [];
         }
 
         _createClass(WaitingComponent, [{
           key: "ngOnInit",
-          value: function ngOnInit() {}
+          value: function ngOnInit() {
+            this.loadProduct();
+          }
+        }, {
+          key: "loadProduct",
+          value: function loadProduct() {
+            var _this = this;
+
+            this.espera = [];
+            var userId = this.authService.getUserId();
+            this.esperaGetSubs = this.b_Layer.getProductsById(userId).subscribe(function (res) {
+              Object.entries(res).map(function (p) {
+                return _this.espera.push(Object.assign({
+                  id: p[0]
+                }, p[1]));
+              });
+            });
+          }
+        }, {
+          key: "onDelete",
+          value: function onDelete(id) {
+            var _this2 = this;
+
+            this.esperaDeleteSubs = this.b_Layer.deleteProduct(id).subscribe(function (res) {
+              console.log("RESPONSE: ", res);
+
+              _this2.loadProduct();
+            }, function (err) {
+              console.log("ERROR: ");
+            });
+          }
+        }, {
+          key: "ngOnDestroy",
+          value: function ngOnDestroy() {
+            this.esperaGetSubs ? this.esperaGetSubs.unsubscribe() : "";
+            this.esperaDeleteSubs ? this.esperaDeleteSubs.unsubscribe() : "";
+          }
         }]);
 
         return WaitingComponent;
       }();
 
       WaitingComponent.ɵfac = function WaitingComponent_Factory(t) {
-        return new (t || WaitingComponent)();
+        return new (t || WaitingComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_2__["BusinessLayerService"]));
       };
 
       WaitingComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
@@ -1482,7 +1533,7 @@
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("matRowDefColumns", ctx.displayedColumns);
           }
         },
-        directives: [_angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatTable"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatColumnDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatHeaderCellDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatCellDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatHeaderRowDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatRowDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatHeaderCell"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatCell"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterLinkWithHref"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatHeaderRow"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatRow"]],
+        directives: [_angular_material_table__WEBPACK_IMPORTED_MODULE_3__["MatTable"], _angular_material_table__WEBPACK_IMPORTED_MODULE_3__["MatColumnDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_3__["MatHeaderCellDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_3__["MatCellDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_3__["MatHeaderRowDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_3__["MatRowDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_3__["MatHeaderCell"], _angular_material_table__WEBPACK_IMPORTED_MODULE_3__["MatCell"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterLinkWithHref"], _angular_material_table__WEBPACK_IMPORTED_MODULE_3__["MatHeaderRow"], _angular_material_table__WEBPACK_IMPORTED_MODULE_3__["MatRow"]],
         styles: ["table[_ngcontent-%COMP%] {\n  width: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9hdWRpdC1ob21lL21vZHVsZXMvYXVkaXQtaGlzdG9yeS9jb21wb25lbnRzL3dhaXRpbmcvd2FpdGluZy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFdBQUE7QUFDSiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvYXVkaXQtaG9tZS9tb2R1bGVzL2F1ZGl0LWhpc3RvcnkvY29tcG9uZW50cy93YWl0aW5nL3dhaXRpbmcuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJ0YWJsZSB7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICB9ICAiXX0= */"]
       });
       /*@__PURE__*/
@@ -1496,7 +1547,11 @@
             styleUrls: ['./waiting.component.scss']
           }]
         }], function () {
-          return [];
+          return [{
+            type: src_app_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"]
+          }, {
+            type: src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_2__["BusinessLayerService"]
+          }];
         }, null);
       })();
       /***/

@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { map, catchError } from "rxjs/operators";
-import { Router } from "@angular/router";
-import { environment } from "../environments/environment";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class AuthService {
@@ -37,7 +37,7 @@ export class AuthService {
     const token = localStorage.getItem("auth");
     return !!token;
   }
-  
+
   public logout(): void {
     localStorage.removeItem("auth");
     localStorage.removeItem("userId");

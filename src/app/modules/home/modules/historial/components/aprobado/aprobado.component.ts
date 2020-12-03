@@ -1,4 +1,8 @@
 import { Component, OnInit } from "@angular/core";
+import { Subscription } from "rxjs";
+import { AuthService } from "src/app/shared/services/auth.service";
+import { BusinessLayerService } from 'src/app/shared/services/business-layer.service';
+
 
 export interface PeriodicElement {
   name: string;
@@ -35,9 +39,55 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ["./aprobado.component.css"]
 })
 export class AprobadoComponent implements OnInit {
-  displayedColumns: string[] = ["position", "name", "weight", "symbol"];
-  dataSource = ELEMENT_DATA;
-  constructor() {}
+  displayedColumns: string[] = [
+    "id",
+    "sucursal",
+    "negocio",
+    "estado",
+    "detalles",
+    "delete"
+  ];
 
-  ngOnInit() {}
+  aprobados = [];
+  dataSource = ELEMENT_DATA;
+  aprobadoGetSubs: Subscription;
+  aprobadoDeleteSubs: Subscription;
+
+  constructor(
+    private authService: AuthService,
+    private b_Layer: BusinessLayerService
+  ) {}
+
+  ngOnInit() {
+    this.loadProduct();
+  }
+
+  loadProduct(): void {
+    this.aprobados = [];
+    const userId = this.authService.getUserId();
+    this.aprobadoGetSubs = this.b_Layer
+      .getProductsById(userId)
+      .subscribe(res => {
+        Object.entries(res).map((p: any) =>
+          this.aprobados.push({ id: p[0], ...p[1] })
+        );
+      });
+  }
+
+  onDelete(id: any): void {
+    this.aprobadoDeleteSubs = this.b_Layer.deleteProduct(id).subscribe(
+      res => {
+        console.log("RESPONSE: ", res);
+        this.loadProduct();
+      },
+      err => {
+        console.log("ERROR: ");
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    this.aprobadoGetSubs ? this.aprobadoGetSubs.unsubscribe() : "";
+    this.aprobadoDeleteSubs ? this.aprobadoDeleteSubs.unsubscribe() : "";
+  }
 }

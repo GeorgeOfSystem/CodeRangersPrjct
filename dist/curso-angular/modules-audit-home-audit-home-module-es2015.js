@@ -26,7 +26,7 @@ const routes = [
             { path: "", redirectTo: "audit-history", pathMatch: "full" },
             {
                 path: "audit-history",
-                loadChildren: () => Promise.all(/*! import() | modules-audit-history-audit-history-module */[__webpack_require__.e("default~modules-audit-history-audit-history-module~modules-historial-historial-module~modules-login-~d4b24c77"), __webpack_require__.e("default~modules-audit-history-audit-history-module~modules-historial-historial-module"), __webpack_require__.e("modules-audit-history-audit-history-module")]).then(__webpack_require__.bind(null, /*! ./modules/audit-history/audit-history.module */ "./src/app/modules/audit-home/modules/audit-history/audit-history.module.ts")).then(m => m.AuditHistoryModule)
+                loadChildren: () => Promise.all(/*! import() | modules-audit-history-audit-history-module */[__webpack_require__.e("default~modules-aprobacion-aprobacion-module~modules-audit-history-audit-history-module~modules-hist~382a5ff9"), __webpack_require__.e("default~modules-audit-history-audit-history-module~modules-historial-historial-module"), __webpack_require__.e("modules-audit-history-audit-history-module")]).then(__webpack_require__.bind(null, /*! ./modules/audit-history/audit-history.module */ "./src/app/modules/audit-home/modules/audit-history/audit-history.module.ts")).then(m => m.AuditHistoryModule)
             },
             {
                 path: "audit-approve",
@@ -62,7 +62,7 @@ AuditHomeRoutingModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵd
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuditHomeComponent", function() { return AuditHomeComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var src_shared_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/shared/auth.service */ "./src/shared/auth.service.ts");
+/* harmony import */ var src_app_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/shared/services/auth.service */ "./src/app/shared/services/auth.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 
 
@@ -77,7 +77,7 @@ class AuditHomeComponent {
         this.authService.logout();
     }
 }
-AuditHomeComponent.ɵfac = function AuditHomeComponent_Factory(t) { return new (t || AuditHomeComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_shared_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"])); };
+AuditHomeComponent.ɵfac = function AuditHomeComponent_Factory(t) { return new (t || AuditHomeComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"])); };
 AuditHomeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AuditHomeComponent, selectors: [["app-audit-home"]], decls: 21, vars: 0, consts: [[1, "navbar", "navbar-expand-lg", "navbar-light", "bg-white"], ["routerLink", "inicio", 1, "navbar-brand"], ["type", "button", "data-toggle", "collapse", "data-target", "#navbarNav", "aria-controls", "navbarNav", "aria-expanded", "false", "aria-label", "Toggle navigation", 1, "navbar-toggler"], [1, "navbar-toggler-icon"], ["id", "navbarNav", 1, "collapse", "navbar-collapse"], [1, "navbar-nav"], [1, "nav-item", "active"], ["routerLink", "audit-history", 1, "nav-link"], [1, "sr-only"], [1, "nav-item"], ["routerLink", "audit-approve", 1, "nav-link"], ["routerLink", "perfil", 1, "nav-link"], ["type", "button", 1, "btn", "btn-light", 3, "click"]], template: function AuditHomeComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "nav", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 1);
@@ -122,7 +122,7 @@ AuditHomeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefin
                 templateUrl: './audit-home.component.html',
                 styleUrls: ['./audit-home.component.scss']
             }]
-    }], function () { return [{ type: src_shared_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"] }]; }, null); })();
+    }], function () { return [{ type: src_app_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"] }]; }, null); })();
 
 
 /***/ }),
