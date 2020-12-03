@@ -37,7 +37,14 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ["./espera.component.css"]
 })
 export class EsperaComponent implements OnInit {
-  displayedColumns: string[] = ["position", "name", "weight", "symbol"];
+  displayedColumns: string[] = [
+    "position",
+    "name",
+    "weight",
+    "symbol",
+    "detalles",
+    "delete"
+  ];
 
   dataSource = ELEMENT_DATA;
 

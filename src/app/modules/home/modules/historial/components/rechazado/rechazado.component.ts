@@ -31,12 +31,20 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ["./rechazado.component.css"]
 })
 export class RechazadoComponent implements OnInit {
-  displayedColumns: string[] = ["position", "name", "weight", "symbol"];
+  displayedColumns: string[] = [
+    "position",
+    "name",
+    "weight",
+    "symbol",
+    "detalles",
+    "delete"
+  ];
 
   dataSource = ELEMENT_DATA;
 
   rechazados = [];
   rechazadoGetSubs: Subscription;
+  rechazadoDeleteSubs: Subscription;
   constructor(
     private authService: AuthService,
     private historialService: HistorialService
@@ -57,6 +65,21 @@ export class RechazadoComponent implements OnInit {
         );
       });
   }
+
+  onDelete(id: any): void {
+    this.rechazadoDeleteSubs = this.historialService
+      .deleteProduct(id)
+      .subscribe(
+        res => {
+          console.log("RESPONSE: ", res);
+          this.loadProduct();
+        },
+        err => {
+          console.log("ERROR: ");
+        }
+      );
+  }
+
   ngOnDestroy() {
     this.rechazadoGetSubs ? this.rechazadoGetSubs.unsubscribe() : "";
   }

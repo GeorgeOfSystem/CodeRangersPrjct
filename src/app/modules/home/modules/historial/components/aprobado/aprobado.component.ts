@@ -38,7 +38,14 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ["./aprobado.component.css"]
 })
 export class AprobadoComponent implements OnInit {
-  displayedColumns: string[] = ["position", "name", "weight", "symbol"];
+  displayedColumns: string[] = [
+    "position",
+    "name",
+    "weight",
+    "symbol",
+    "detalles",
+    "delete"
+  ];
   dataSource = ELEMENT_DATA;
 
   aprobados = [];
