@@ -39,17 +39,19 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class AprobadoComponent implements OnInit {
   displayedColumns: string[] = [
-    "position",
-    "name",
-    "weight",
-    "symbol",
+    "id",
+    "sucursal",
+    "negocio",
+    "estado",
     "detalles",
     "delete"
   ];
-  dataSource = ELEMENT_DATA;
 
   aprobados = [];
+  dataSource = ELEMENT_DATA;
   aprobadoGetSubs: Subscription;
+  aprobadoDeleteSubs: Subscription;
+
   constructor(
     private authService: AuthService,
     private historialService: HistorialService
@@ -70,7 +72,21 @@ export class AprobadoComponent implements OnInit {
         );
       });
   }
+
+  onDelete(id: any): void {
+    this.aprobadoDeleteSubs = this.historialService.deleteProduct(id).subscribe(
+      res => {
+        console.log("RESPONSE: ", res);
+        this.loadProduct();
+      },
+      err => {
+        console.log("ERROR: ");
+      }
+    );
+  }
+
   ngOnDestroy() {
     this.aprobadoGetSubs ? this.aprobadoGetSubs.unsubscribe() : "";
+    this.aprobadoDeleteSubs ? this.aprobadoDeleteSubs.unsubscribe() : "";
   }
 }

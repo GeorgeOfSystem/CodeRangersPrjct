@@ -38,10 +38,10 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class EsperaComponent implements OnInit {
   displayedColumns: string[] = [
-    "position",
-    "name",
-    "weight",
-    "symbol",
+    "id",
+    "sucursal",
+    "negocio",
+    "estado",
     "detalles",
     "delete"
   ];
@@ -50,6 +50,7 @@ export class EsperaComponent implements OnInit {
 
   espera = [];
   esperaGetSubs: Subscription;
+  esperaDeleteSubs: Subscription;
   constructor(
     private authService: AuthService,
     private historialService: HistorialService
@@ -70,7 +71,21 @@ export class EsperaComponent implements OnInit {
         );
       });
   }
+
+  onDelete(id: any): void {
+    this.esperaDeleteSubs = this.historialService.deleteProduct(id).subscribe(
+      res => {
+        console.log("RESPONSE: ", res);
+        this.loadProduct();
+      },
+      err => {
+        console.log("ERROR: ");
+      }
+    );
+  }
+
   ngOnDestroy() {
     this.esperaGetSubs ? this.esperaGetSubs.unsubscribe() : "";
+    this.esperaDeleteSubs ? this.esperaDeleteSubs.unsubscribe() : "";
   }
 }

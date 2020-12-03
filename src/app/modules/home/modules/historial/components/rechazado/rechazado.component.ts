@@ -32,10 +32,10 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class RechazadoComponent implements OnInit {
   displayedColumns: string[] = [
-    "position",
-    "name",
-    "weight",
-    "symbol",
+    "id",
+    "sucursal",
+    "negocio",
+    "estado",
     "detalles",
     "delete"
   ];
