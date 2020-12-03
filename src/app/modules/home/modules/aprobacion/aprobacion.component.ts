@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
 import { AuthService } from "../../../../../shared/services/auth.service";
 import { FormulariosService } from "../../../../../shared/services/formularios.service";
+import { HistorialService } from "../../../../../shared/services/historial.service";
 
 @Component({
   selector: "app-aprobacion",
@@ -12,10 +13,13 @@ import { FormulariosService } from "../../../../../shared/services/formularios.s
 export class AprobacionComponent implements OnInit, OnDestroy {
   formularioForm: FormGroup;
   formularioSubs: Subscription;
+  historialForm: FormGroup;
+  historialSubs: Subscription;
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private formularioService: FormulariosService
+    private formularioService: FormulariosService,
+    private historialService: HistorialService
   ) {}
 
   ngOnInit() {
@@ -25,6 +29,13 @@ export class AprobacionComponent implements OnInit, OnDestroy {
       direccion: ["", [Validators.required]],
       requisitos: ["", [Validators.required]],
       propuesta: ["", [Validators.required]],
+      ownerId: "",
+      estado: ""
+    });
+    this.historialForm = this.formBuilder.group({
+      sucursal: "",
+      negocio: "",
+      estado: "",
       ownerId: ""
     });
   }
@@ -34,6 +45,22 @@ export class AprobacionComponent implements OnInit, OnDestroy {
     this.formularioSubs = this.formularioService
       .addProduct({
         ...this.formularioForm.value,
+        ownerId: this.authService.getUserId(),
+        estado: "En Espera"
+      })
+      .subscribe(
+        res => {
+          console.log("Resp: ", res);
+        },
+        err => {
+          console.log("Error de servidor");
+        }
+      );
+    this.historialSubs = this.historialService
+      .addProduct({
+        sucursal: this.formularioForm.value.direccion,
+        negocio: this.formularioForm.value.negocio,
+        estado: "En Espera",
         ownerId: this.authService.getUserId()
       })
       .subscribe(
@@ -47,5 +74,6 @@ export class AprobacionComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     this.formularioSubs ? this.formularioSubs.unsubscribe() : "";
+    this.historialSubs ? this.historialSubs.unsubscribe() : "";
   }
 }

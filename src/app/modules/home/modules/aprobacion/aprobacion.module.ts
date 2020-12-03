@@ -8,6 +8,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { FormulariosService } from "../../../../../shared/services/formularios.service";
+import { HistorialService } from "../../../../../shared/services/historial.service";
 
 @NgModule({
   imports: [
@@ -21,6 +22,6 @@ import { FormulariosService } from "../../../../../shared/services/formularios.s
     ReactiveFormsModule
   ],
   declarations: [AprobacionComponent],
-  providers: [FormulariosService]
+  providers: [FormulariosService, HistorialService]
 })
 export class AprobacionModule {}
