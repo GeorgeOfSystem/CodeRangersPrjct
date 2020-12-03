@@ -1,4 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import { Subscription } from "rxjs";
+import { AuthService } from "../../../../../../../shared/services/auth.service";
+import { HistorialService } from "../../../../../../../shared/services/historial.service";
 
 export interface PeriodicElement {
   name: string;
@@ -37,7 +40,30 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class AprobadoComponent implements OnInit {
   displayedColumns: string[] = ["position", "name", "weight", "symbol"];
   dataSource = ELEMENT_DATA;
-  constructor() {}
 
-  ngOnInit() {}
+  aprobados = [];
+  aprobadoGetSubs: Subscription;
+  constructor(
+    private authService: AuthService,
+    private historialService: HistorialService
+  ) {}
+
+  ngOnInit() {
+    this.loadProduct();
+  }
+
+  loadProduct(): void {
+    this.aprobados = [];
+    const userId = this.authService.getUserId();
+    this.aprobadoGetSubs = this.historialService
+      .getProductsById(userId)
+      .subscribe(res => {
+        Object.entries(res).map((p: any) =>
+          this.aprobados.push({ id: p[0], ...p[1] })
+        );
+      });
+  }
+  ngOnDestroy() {
+    this.aprobadoGetSubs ? this.aprobadoGetSubs.unsubscribe() : "";
+  }
 }
