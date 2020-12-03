@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
-import { AuthService } from "../../../../../shared/services/auth.service";
-import { FormulariosService } from "../../../../../shared/services/formularios.service";
-import { HistorialService } from "../../../../../shared/services/historial.service";
+import { AuthService } from "../../../../shared/services/auth.service";
+import { FormulariosService } from "../../../../shared/services/formularios.service";
+import { HistorialService } from "../../../../shared/services/historial.service";
 
 @Component({
   selector: "app-aprobacion",

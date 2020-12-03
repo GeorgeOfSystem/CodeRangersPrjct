@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
-import { AuthService } from "../../../../../../../shared/services/auth.service";
-import { HistorialService } from "../../../../../../../shared/services/historial.service";
+import { AuthService } from "../../../../../../shared/services/auth.service";
+import { HistorialService } from "../../../../../../shared/services/historial.service";
 
 export interface PeriodicElement {
   name: string;
