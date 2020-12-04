@@ -10,27 +10,6 @@ export interface PeriodicElement {
   symbol: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    position: 1,
-    name: "Pizza Steve Achumani",
-    weight: "Restaurante",
-    symbol: "Rechazado"
-  },
-  {
-    position: 2,
-    name: "Pizza Steve San Miguel",
-    weight: "Restaurante",
-    symbol: "Rechazado"
-  },
-  {
-    position: 3,
-    name: "Bonsu Cota Cota",
-    weight: "Restaurante",
-    symbol: "Rechazado"
-  }
-];
-
 @Component({
   selector: "app-espera",
   templateUrl: "./espera.component.html",
@@ -46,9 +25,8 @@ export class EsperaComponent implements OnInit {
     "delete"
   ];
 
-  dataSource = ELEMENT_DATA;
-
   espera = [];
+  dataSource = [];
   esperaGetSubs: Subscription;
   esperaDeleteSubs: Subscription;
   constructor(
@@ -69,6 +47,7 @@ export class EsperaComponent implements OnInit {
         Object.entries(res).map((p: any) => {
           if (p[1].estado == "En Espera") {
             this.espera.push({ id: p[0], ...p[1] });
+            this.dataSource = this.espera;
           }
         });
       });

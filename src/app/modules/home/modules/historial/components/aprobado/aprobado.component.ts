@@ -10,28 +10,6 @@ export interface PeriodicElement {
   symbol: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    position: 1,
-    name: "Spazio Calacoto",
-    weight: "Gimnasio",
-    symbol: "Aprobado"
-  },
-  { position: 2, name: "Go Achumani", weight: "Gimnasio", symbol: "Aprobado" },
-  {
-    position: 3,
-    name: "Vainilla San Miguel",
-    weight: "Café",
-    symbol: "Aprobado"
-  },
-  {
-    position: 4,
-    name: "UPB Achocalla",
-    weight: "Educación",
-    symbol: "Aprobado"
-  }
-];
-
 @Component({
   selector: "app-aprobado",
   templateUrl: "./aprobado.component.html",
@@ -48,7 +26,7 @@ export class AprobadoComponent implements OnInit {
   ];
 
   aprobados = [];
-  dataSource = ELEMENT_DATA;
+  dataSource = [];
   aprobadoGetSubs: Subscription;
   aprobadoDeleteSubs: Subscription;
 
@@ -59,6 +37,7 @@ export class AprobadoComponent implements OnInit {
 
   ngOnInit() {
     this.loadProduct();
+    this.dataSource = this.aprobados;
   }
 
   loadProduct(): void {
@@ -70,6 +49,7 @@ export class AprobadoComponent implements OnInit {
         Object.entries(res).map((p: any) => {
           if (p[1].estado == "aprobado") {
             this.aprobados.push({ id: p[0], ...p[1] });
+            this.dataSource = this.aprobados;
           }
         });
       });

@@ -10,21 +10,6 @@ export interface PeriodicElement {
   symbol: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    position: 1,
-    name: "Iglesia San Miguel",
-    weight: "Religión",
-    symbol: "Rechazado"
-  },
-  {
-    position: 2,
-    name: "MegaCenter Irpavi",
-    weight: "Cine",
-    symbol: "Rechazado"
-  }
-];
-
 @Component({
   selector: "app-rechazado",
   templateUrl: "./rechazado.component.html",
@@ -40,9 +25,8 @@ export class RechazadoComponent implements OnInit {
     "delete"
   ];
 
-  dataSource = ELEMENT_DATA;
-
   rechazados = [];
+  dataSource = [];
   rechazadoGetSubs: Subscription;
   rechazadoDeleteSubs: Subscription;
   constructor(
@@ -63,6 +47,7 @@ export class RechazadoComponent implements OnInit {
         Object.entries(res).map((p: any) => {
           if (p[1].estado == "Rechazado") {
             this.rechazados.push({ id: p[0], ...p[1] });
+            this.dataSource = this.rechazados;
           }
         });
       });
