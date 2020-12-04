@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
 import { AuthService } from "../../../../shared/services/auth.service";
@@ -15,6 +15,7 @@ export class AprobacionComponent implements OnInit, OnDestroy {
   formularioSubs: Subscription;
   historialForm: FormGroup;
   historialSubs: Subscription;
+  ckeditorContent;
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
