@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
-import { AuthService } from "../../../../../../../shared/services/auth.service";
-import { HistorialService } from "../../../../../../../shared/services/historial.service";
+import { AuthService } from "../../../../../../shared/services/auth.service";
+import { HistorialService } from "../../../../../../shared/services/historial.service";
 
 export interface PeriodicElement {
   name: string;
@@ -67,9 +67,11 @@ export class AprobadoComponent implements OnInit {
     this.aprobadoGetSubs = this.historialService
       .getProductsById(userId)
       .subscribe(res => {
-        Object.entries(res).map((p: any) =>
-          this.aprobados.push({ id: p[0], ...p[1] })
-        );
+        Object.entries(res).map((p: any) => {
+          if (p[1].estado == "aprobado") {
+            this.aprobados.push({ id: p[0], ...p[1] });
+          }
+        });
       });
   }
 
