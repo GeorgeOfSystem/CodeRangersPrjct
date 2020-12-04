@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { AuthService } from "../../../../shared/services/auth.service";
 import { FormulariosService } from "../../../../shared/services/formularios.service";
@@ -20,7 +21,8 @@ export class AprobacionComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private formularioService: FormulariosService,
-    private historialService: HistorialService
+    private historialService: HistorialService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -68,6 +70,7 @@ export class AprobacionComponent implements OnInit, OnDestroy {
                 console.log("Error de servidor");
               }
             );
+          this.router.navigate(["historial"]);
         },
         err => {
           console.log("Error de servidor");
