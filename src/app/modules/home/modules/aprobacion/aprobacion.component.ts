@@ -29,7 +29,7 @@ export class AprobacionComponent implements OnInit, OnDestroy {
       negocio: ["", [Validators.required]],
       direccion: ["", [Validators.required]],
       requisitos: ["", [Validators.required]],
-      propuesta: ["", [Validators.required]],
+      propuesta: "",
       ownerId: "",
       estado: ""
     });
@@ -47,26 +47,27 @@ export class AprobacionComponent implements OnInit, OnDestroy {
       .addProduct({
         ...this.formularioForm.value,
         ownerId: this.authService.getUserId(),
-        estado: "En Espera"
-      })
-      .subscribe(
-        res => {
-          console.log("Resp: ", res);
-        },
-        err => {
-          console.log("Error de servidor");
-        }
-      );
-    this.historialSubs = this.historialService
-      .addProduct({
-        sucursal: this.formularioForm.value.direccion,
-        negocio: this.formularioForm.value.negocio,
         estado: "En Espera",
-        ownerId: this.authService.getUserId()
+        propuesta: this.ckeditorContent
       })
       .subscribe(
         res => {
           console.log("Resp: ", res);
+          this.historialSubs = this.historialService
+            .addProduct({
+              sucursal: this.formularioForm.value.direccion,
+              negocio: this.formularioForm.value.negocio,
+              estado: "En Espera",
+              ownerId: this.authService.getUserId()
+            })
+            .subscribe(
+              res => {
+                console.log("Resp: ", res);
+              },
+              err => {
+                console.log("Error de servidor");
+              }
+            );
         },
         err => {
           console.log("Error de servidor");

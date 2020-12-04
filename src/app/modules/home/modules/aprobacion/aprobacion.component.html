@@ -33,19 +33,13 @@
 						<textarea class="form-control" formControlName="requisitos" id="exampleFormControlTextarea1" rows="3"></textarea>
 					</div>
 					&nbsp;
-					&nbsp;
-					<div class="form-group">
-						<label for="exampleFormControlTextarea1">Propuesta</label>
-						<textarea class="form-control" formControlName="propuesta" id="exampleFormControlTextarea1" rows="3"></textarea>
-					</div>
-					&nbsp;
-					&nbsp;
 		</form>
+		<label for="exampleFormControlTextarea1">Propuesta</label>
+
+		<ckeditor [(ngModel)]="ckeditorContent">
+		</ckeditor>
 	</mat-card-content>
 	<mat-card-actions style="text-align:center">
 		<button mat-button (click)="onCreate()" >Enviar</button>
 	</mat-card-actions>
 </mat-card>
-
-<ckeditor [(ngModel)]="ckeditorContent">
-</ckeditor> 
