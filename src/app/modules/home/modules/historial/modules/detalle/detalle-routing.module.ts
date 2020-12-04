@@ -1,13 +1,10 @@
 import { NgModule, Component } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { HistorialComponent } from "./historial.component";
+import { DetalleComponent } from "./detalle.component";
 
-const routes: Routes = [
-  { path: "", component: HistorialComponent },
-
-];
+const routes: Routes = [{ path: "", component: DetalleComponent }];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class HistorialRoutingModule {}
+export class DetalleRoutingModule {}
