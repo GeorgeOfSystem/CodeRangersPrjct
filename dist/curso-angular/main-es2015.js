@@ -3213,6 +3213,39 @@ class BusinessLayerService {
     deleteProduct(id) {
         return this.data.deleteProduct(id);
     }
+    //Create - Add form to the database
+    addProductBase(mensaje, base) {
+        var isRepet = true;
+        this.products = [];
+        this.productGetSubs = this.data.getProducts().subscribe(res => {
+            Object.entries(res).map((p) => this.products.push(Object.assign({ id: p[0] }, p[1])));
+            this.products.forEach(element => {
+                if (mensaje == element) {
+                    return;
+                }
+            });
+        });
+        return this.data.addProductBase(mensaje, base);
+    }
+    //Reed - get form from the database
+    getProductsBase(base) {
+        return this.data.getProductsBase(base);
+    }
+    //get with ID
+    getProductsByIdBase(id, base) {
+        return this.data.getProductsByIdBase(id, base);
+    }
+    //Update - chage the information of the form [ ID needed ]
+    updateProductBase(id, mensaje, base) {
+        return this.data.updateProductBase(id, mensaje, base);
+    }
+    //Delete - remove the form from the database [ ID needed ]
+    deleteProductBase(id, base) {
+        return this.data.deleteProductBase(id, base);
+    }
+    setCurrentElement(element) {
+        this.currentElent = element;
+    }
 }
 BusinessLayerService.ɵfac = function BusinessLayerService_Factory(t) { return new (t || BusinessLayerService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_data_layer_service__WEBPACK_IMPORTED_MODULE_3__["DataLayerService"])); };
 BusinessLayerService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: BusinessLayerService, factory: BusinessLayerService.ɵfac });
@@ -3247,23 +3280,38 @@ class DataLayerService {
     }
     //Create - Add form to the database
     addProduct(mensaje) {
-        return this.http.post(`${this.url}/historial.json`, mensaje);
+        return this.http.post(`${this.url}/formularios.json`, mensaje);
+    }
+    addProductBase(mensaje, base) {
+        return this.http.post(`${this.url}/${base}.json`, mensaje);
     }
     //Reed - get form from the database
     getProducts() {
         return this.http.get(`${this.url}/formularios.json`);
     }
+    getProductsBase(base) {
+        return this.http.get(`${this.url}/${base}.json`);
+    }
     //get with ID
     getProductsById(id) {
-        return this.http.get(`${this.url}/historial.json?orderBy="ownerId"&equalTo="${id}"&print=pretty`);
+        return this.http.get(`${this.url}/formularios.json?orderBy="ownerId"&equalTo="${id}"&print=pretty`);
+    }
+    getProductsByIdBase(id, base) {
+        return this.http.get(`${this.url}/${base}.json?orderBy="ownerId"&equalTo="${id}"&print=pretty`);
     }
     //Update - chage the information of the form [ ID needed ]
     updateProduct(id, mensaje) {
-        return this.http.put(`${this.url}/historial/${id}.json`, mensaje);
+        return this.http.put(`${this.url}/formularios/${id}.json`, mensaje);
+    }
+    updateProductBase(id, mensaje, base) {
+        return this.http.put(`${this.url}/${base}/${id}.json`, mensaje);
     }
     //Delete - remove the form from the database [ ID needed ]
     deleteProduct(id) {
-        return this.http.delete(`${this.url}/historial/${id}.json`);
+        return this.http.delete(`${this.url}/formularios/${id}.json`);
+    }
+    deleteProductBase(id, base) {
+        return this.http.delete(`${this.url}/${base}/${id}.json`);
     }
 }
 DataLayerService.ɵfac = function DataLayerService_Factory(t) { return new (t || DataLayerService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"])); };

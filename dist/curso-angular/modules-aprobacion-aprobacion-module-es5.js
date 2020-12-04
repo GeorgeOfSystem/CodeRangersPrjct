@@ -897,31 +897,42 @@
       /* harmony import */
 
 
-      var _angular_material_card__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      var src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! src/app/shared/services/business-layer.service */
+      "./src/app/shared/services/business-layer.service.ts");
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @angular/router */
+      "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+      /* harmony import */
+
+
+      var _angular_material_card__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
       /*! @angular/material/card */
       "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/card.js");
       /* harmony import */
 
 
-      var ng2_ckeditor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      var ng2_ckeditor__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
       /*! ng2-ckeditor */
       "./node_modules/ng2-ckeditor/__ivy_ngcc__/fesm2015/ng2-ckeditor.js");
       /* harmony import */
 
 
-      var _angular_material_button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      var _angular_material_button__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
       /*! @angular/material/button */
       "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/button.js");
-      /*import { FormulariosService } from "../../../../shared/services/formularios.service";
-      import { HistorialService } from "../../../../shared/services/historial.service";*/
-
 
       var AprobacionComponent = /*#__PURE__*/function () {
-        function AprobacionComponent(formBuilder, authService) {
+        function AprobacionComponent(formBuilder, authService, b_Layer, router) {
           _classCallCheck(this, AprobacionComponent);
 
           this.formBuilder = formBuilder;
           this.authService = authService;
+          this.b_Layer = b_Layer;
+          this.router = router;
         }
 
         _createClass(AprobacionComponent, [{
@@ -946,43 +957,35 @@
         }, {
           key: "onCreate",
           value: function onCreate() {
-            /*console.log("Form group: ", this.formularioForm.value);
-            this.formularioSubs = this.formularioService
-              .addProduct({
-                ...this.formularioForm.value,
-                ownerId: this.authService.getUserId(),
+            var _this5 = this;
+
+            console.log("Form group: ", this.formularioForm.value);
+            this.b_LayerSubs = this.b_Layer.addProduct(Object.assign(Object.assign({}, this.formularioForm.value), {
+              ownerId: this.authService.getUserId(),
+              estado: "En Espera",
+              propuesta: this.ckeditorContent
+            })).subscribe(function (res) {
+              console.log("Resp: ", res);
+              _this5.historialSubs = _this5.b_Layer.addProductBase({
+                sucursal: _this5.formularioForm.value.direccion,
+                negocio: _this5.formularioForm.value.negocio,
                 estado: "En Espera",
-                propuesta: this.ckeditorContent
-              })
-              .subscribe(
-                res => {
-                  console.log("Resp: ", res);
-                  this.historialSubs = this.historialService
-                    .addProduct({
-                      sucursal: this.formularioForm.value.direccion,
-                      negocio: this.formularioForm.value.negocio,
-                      estado: "En Espera",
-                      ownerId: this.authService.getUserId()
-                    })
-                    .subscribe(
-                      res => {
-                        console.log("Resp: ", res);
-                      },
-                      err => {
-                        console.log("Error de servidor");
-                      }
-                    );
-                },
-                err => {
-                  console.log("Error de servidor");
-                }
-              );*/
+                ownerId: _this5.authService.getUserId()
+              }, "historial").subscribe(function (res) {
+                console.log("Resp: ", res);
+              }, function (err) {
+                console.log("Error de servidor");
+              });
+
+              _this5.router.navigate(["historial"]);
+            }, function (err) {
+              console.log("Error de servidor");
+            });
           }
         }, {
           key: "ngOnDestroy",
           value: function ngOnDestroy() {
-            /*this.formularioSubs ? this.formularioSubs.unsubscribe() : "";
-            this.historialSubs ? this.historialSubs.unsubscribe() : "";*/
+            this.b_Layer ? this.b_LayerSubs.unsubscribe() : "";
           }
         }]);
 
@@ -990,7 +993,7 @@
       }();
 
       AprobacionComponent.ɵfac = function AprobacionComponent_Factory(t) {
-        return new (t || AprobacionComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]));
+        return new (t || AprobacionComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_3__["BusinessLayerService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]));
       };
 
       AprobacionComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
@@ -1152,7 +1155,7 @@
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx.ckeditorContent);
           }
         },
-        directives: [_angular_material_card__WEBPACK_IMPORTED_MODULE_3__["MatCard"], _angular_material_card__WEBPACK_IMPORTED_MODULE_3__["MatCardHeader"], _angular_material_card__WEBPACK_IMPORTED_MODULE_3__["MatCardTitle"], _angular_material_card__WEBPACK_IMPORTED_MODULE_3__["MatCardContent"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormGroupDirective"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControlName"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["SelectControlValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgSelectOption"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["ɵangular_packages_forms_forms_x"], ng2_ckeditor__WEBPACK_IMPORTED_MODULE_4__["ɵa"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgModel"], _angular_material_card__WEBPACK_IMPORTED_MODULE_3__["MatCardActions"], _angular_material_button__WEBPACK_IMPORTED_MODULE_5__["MatButton"]],
+        directives: [_angular_material_card__WEBPACK_IMPORTED_MODULE_5__["MatCard"], _angular_material_card__WEBPACK_IMPORTED_MODULE_5__["MatCardHeader"], _angular_material_card__WEBPACK_IMPORTED_MODULE_5__["MatCardTitle"], _angular_material_card__WEBPACK_IMPORTED_MODULE_5__["MatCardContent"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormGroupDirective"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControlName"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["SelectControlValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgSelectOption"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["ɵangular_packages_forms_forms_x"], ng2_ckeditor__WEBPACK_IMPORTED_MODULE_6__["ɵa"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgModel"], _angular_material_card__WEBPACK_IMPORTED_MODULE_5__["MatCardActions"], _angular_material_button__WEBPACK_IMPORTED_MODULE_7__["MatButton"]],
         styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvaG9tZS9tb2R1bGVzL2Fwcm9iYWNpb24vYXByb2JhY2lvbi5jb21wb25lbnQuY3NzIn0= */"]
       });
       /*@__PURE__*/
@@ -1170,6 +1173,10 @@
             type: _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"]
           }, {
             type: _shared_services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]
+          }, {
+            type: src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_3__["BusinessLayerService"]
+          }, {
+            type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]
           }];
         }, null);
       })();
@@ -1256,9 +1263,12 @@
       var ng2_ckeditor__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
       /*! ng2-ckeditor */
       "./node_modules/ng2-ckeditor/__ivy_ngcc__/fesm2015/ng2-ckeditor.js");
-      /*import { FormulariosService } from "../../../../shared/services/formularios.service";
-      import { HistorialService } from "../../../../shared/services/historial.service";*/
+      /* harmony import */
 
+
+      var src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+      /*! src/app/shared/services/business-layer.service */
+      "./src/app/shared/services/business-layer.service.ts");
 
       var AprobacionModule = function AprobacionModule() {
         _classCallCheck(this, AprobacionModule);
@@ -1271,9 +1281,7 @@
         factory: function AprobacionModule_Factory(t) {
           return new (t || AprobacionModule)();
         },
-        providers: [
-          /*FormulariosService, HistorialService*/
-        ],
+        providers: [src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_10__["BusinessLayerService"]],
         imports: [[_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _aprobacion_routing_module__WEBPACK_IMPORTED_MODULE_3__["AprobacionRoutingModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"], _angular_material_card__WEBPACK_IMPORTED_MODULE_5__["MatCardModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_6__["MatButtonModule"], _angular_material_form_field__WEBPACK_IMPORTED_MODULE_7__["MatFormFieldModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_8__["MatInputModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"], ng2_ckeditor__WEBPACK_IMPORTED_MODULE_9__["CKEditorModule"]]]
       });
 
@@ -1292,9 +1300,7 @@
           args: [{
             imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _aprobacion_routing_module__WEBPACK_IMPORTED_MODULE_3__["AprobacionRoutingModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"], _angular_material_card__WEBPACK_IMPORTED_MODULE_5__["MatCardModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_6__["MatButtonModule"], _angular_material_form_field__WEBPACK_IMPORTED_MODULE_7__["MatFormFieldModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_8__["MatInputModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"], ng2_ckeditor__WEBPACK_IMPORTED_MODULE_9__["CKEditorModule"]],
             declarations: [_aprobacion_component__WEBPACK_IMPORTED_MODULE_2__["AprobacionComponent"]],
-            providers: [
-              /*FormulariosService, HistorialService*/
-            ]
+            providers: [src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_10__["BusinessLayerService"]]
           }]
         }], null, null);
       })();

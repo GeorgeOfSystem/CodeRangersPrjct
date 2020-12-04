@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
+import { BusinessLayerService } from 'src/app/shared/services/business-layer.service';
 import { AuthService } from "../../../../../../shared/services/auth.service";
-//import { HistorialService } from "../../../../../../shared/services/historial.service";
+
 
 export interface PeriodicElement {
   name: string;
@@ -9,27 +10,6 @@ export interface PeriodicElement {
   weight: string;
   symbol: string;
 }
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    position: 1,
-    name: "Pizza Steve Achumani",
-    weight: "Restaurante",
-    symbol: "Rechazado"
-  },
-  {
-    position: 2,
-    name: "Pizza Steve San Miguel",
-    weight: "Restaurante",
-    symbol: "Rechazado"
-  },
-  {
-    position: 3,
-    name: "Bonsu Cota Cota",
-    weight: "Restaurante",
-    symbol: "Rechazado"
-  }
-];
 
 @Component({
   selector: "app-espera",
@@ -46,14 +26,13 @@ export class EsperaComponent implements OnInit {
     "delete"
   ];
 
-  dataSource = ELEMENT_DATA;
-
   espera = [];
+  dataSource = [];
   esperaGetSubs: Subscription;
   esperaDeleteSubs: Subscription;
   constructor(
     private authService: AuthService,
-    //private historialService: HistorialService
+    private b_Layer: BusinessLayerService
   ) {}
 
   ngOnInit() {
@@ -61,21 +40,22 @@ export class EsperaComponent implements OnInit {
   }
 
   loadProduct(): void {
-    /*this.espera = [];
+    this.espera = [];
     const userId = this.authService.getUserId();
-    this.esperaGetSubs = this.historialService
-      .getProductsById(userId)
+    this.esperaGetSubs = this.b_Layer
+      .getProductsByIdBase(userId,"historial")
       .subscribe(res => {
         Object.entries(res).map((p: any) => {
           if (p[1].estado == "En Espera") {
             this.espera.push({ id: p[0], ...p[1] });
+            this.dataSource = this.espera;
           }
         });
-      });*/
+      });
   }
 
   onDelete(id: any): void {
-    /*this.esperaDeleteSubs = this.historialService.deleteProduct(id).subscribe(
+    this.esperaDeleteSubs = this.b_Layer.deleteProductBase(id,"historial").subscribe(
       res => {
         console.log("RESPONSE: ", res);
         this.loadProduct();
@@ -83,11 +63,11 @@ export class EsperaComponent implements OnInit {
       err => {
         console.log("ERROR: ");
       }
-    );*/
+    );
   }
 
   ngOnDestroy() {
     this.esperaGetSubs ? this.esperaGetSubs.unsubscribe() : "";
-    this.esperaDeleteSubs ? this.esperaDeleteSubs.unsubscribe() : "";
+    //this.esperaDeleteSubs ? this.esperaDeleteSubs.unsubscribe() : "";
   }
 }

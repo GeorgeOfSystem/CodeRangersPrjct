@@ -489,9 +489,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
 /* harmony import */ var _shared_services_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../shared/services/auth.service */ "./src/app/shared/services/auth.service.ts");
-/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/card.js");
-/* harmony import */ var ng2_ckeditor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ng2-ckeditor */ "./node_modules/ng2-ckeditor/__ivy_ngcc__/fesm2015/ng2-ckeditor.js");
-/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/button.js");
+/* harmony import */ var src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/shared/services/business-layer.service */ "./src/app/shared/services/business-layer.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/card.js");
+/* harmony import */ var ng2_ckeditor__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ng2-ckeditor */ "./node_modules/ng2-ckeditor/__ivy_ngcc__/fesm2015/ng2-ckeditor.js");
+/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/button.js");
 
 
 
@@ -500,12 +502,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-/*import { FormulariosService } from "../../../../shared/services/formularios.service";
-import { HistorialService } from "../../../../shared/services/historial.service";*/
+
+
 class AprobacionComponent {
-    constructor(formBuilder, authService) {
+    constructor(formBuilder, authService, b_Layer, router) {
         this.formBuilder = formBuilder;
         this.authService = authService;
+        this.b_Layer = b_Layer;
+        this.router = router;
     }
     ngOnInit() {
         this.formularioForm = this.formBuilder.group({
@@ -525,44 +529,33 @@ class AprobacionComponent {
         });
     }
     onCreate() {
-        /*console.log("Form group: ", this.formularioForm.value);
-        this.formularioSubs = this.formularioService
-          .addProduct({
-            ...this.formularioForm.value,
-            ownerId: this.authService.getUserId(),
-            estado: "En Espera",
-            propuesta: this.ckeditorContent
-          })
-          .subscribe(
-            res => {
-              console.log("Resp: ", res);
-              this.historialSubs = this.historialService
-                .addProduct({
-                  sucursal: this.formularioForm.value.direccion,
-                  negocio: this.formularioForm.value.negocio,
-                  estado: "En Espera",
-                  ownerId: this.authService.getUserId()
-                })
-                .subscribe(
-                  res => {
-                    console.log("Resp: ", res);
-                  },
-                  err => {
-                    console.log("Error de servidor");
-                  }
-                );
-            },
-            err => {
-              console.log("Error de servidor");
-            }
-          );*/
+        console.log("Form group: ", this.formularioForm.value);
+        this.b_LayerSubs = this.b_Layer
+            .addProduct(Object.assign(Object.assign({}, this.formularioForm.value), { ownerId: this.authService.getUserId(), estado: "En Espera", propuesta: this.ckeditorContent }))
+            .subscribe(res => {
+            console.log("Resp: ", res);
+            this.historialSubs = this.b_Layer
+                .addProductBase({
+                sucursal: this.formularioForm.value.direccion,
+                negocio: this.formularioForm.value.negocio,
+                estado: "En Espera",
+                ownerId: this.authService.getUserId()
+            }, "historial")
+                .subscribe(res => {
+                console.log("Resp: ", res);
+            }, err => {
+                console.log("Error de servidor");
+            });
+            this.router.navigate(["historial"]);
+        }, err => {
+            console.log("Error de servidor");
+        });
     }
     ngOnDestroy() {
-        /*this.formularioSubs ? this.formularioSubs.unsubscribe() : "";
-        this.historialSubs ? this.historialSubs.unsubscribe() : "";*/
+        this.b_Layer ? this.b_LayerSubs.unsubscribe() : "";
     }
 }
-AprobacionComponent.ɵfac = function AprobacionComponent_Factory(t) { return new (t || AprobacionComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"])); };
+AprobacionComponent.ɵfac = function AprobacionComponent_Factory(t) { return new (t || AprobacionComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_3__["BusinessLayerService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"])); };
 AprobacionComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AprobacionComponent, selectors: [["app-aprobacion"]], decls: 42, vars: 2, consts: [[1, "example-card"], ["justify-content:center", "", "align-items:center", ""], [3, "formGroup"], [1, "row"], [1, "col"], ["for", "exampleFormControlInput1"], ["type", "text", "formControlName", "nombre", "placeholder", "Empresa", 1, "form-control"], ["formControlName", "negocio", 1, "form-control"], [1, "form-group"], ["type", "email", "formControlName", "direccion", "id", "exampleFormControlInput1", "placeholder", "San miguel Calacoto Local 230", 1, "form-control"], ["for", "exampleFormControlTextarea1"], ["formControlName", "requisitos", "id", "exampleFormControlTextarea1", "rows", "3", 1, "form-control"], [3, "ngModel", "ngModelChange"], [2, "text-align", "center"], ["mat-button", "", 3, "click"]], template: function AprobacionComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-card", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "mat-card-header", 1);
@@ -637,7 +630,7 @@ AprobacionComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefi
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("formGroup", ctx.formularioForm);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](33);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx.ckeditorContent);
-    } }, directives: [_angular_material_card__WEBPACK_IMPORTED_MODULE_3__["MatCard"], _angular_material_card__WEBPACK_IMPORTED_MODULE_3__["MatCardHeader"], _angular_material_card__WEBPACK_IMPORTED_MODULE_3__["MatCardTitle"], _angular_material_card__WEBPACK_IMPORTED_MODULE_3__["MatCardContent"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormGroupDirective"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControlName"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["SelectControlValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgSelectOption"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["ɵangular_packages_forms_forms_x"], ng2_ckeditor__WEBPACK_IMPORTED_MODULE_4__["ɵa"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgModel"], _angular_material_card__WEBPACK_IMPORTED_MODULE_3__["MatCardActions"], _angular_material_button__WEBPACK_IMPORTED_MODULE_5__["MatButton"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvaG9tZS9tb2R1bGVzL2Fwcm9iYWNpb24vYXByb2JhY2lvbi5jb21wb25lbnQuY3NzIn0= */"] });
+    } }, directives: [_angular_material_card__WEBPACK_IMPORTED_MODULE_5__["MatCard"], _angular_material_card__WEBPACK_IMPORTED_MODULE_5__["MatCardHeader"], _angular_material_card__WEBPACK_IMPORTED_MODULE_5__["MatCardTitle"], _angular_material_card__WEBPACK_IMPORTED_MODULE_5__["MatCardContent"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormGroupDirective"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControlName"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["SelectControlValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgSelectOption"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["ɵangular_packages_forms_forms_x"], ng2_ckeditor__WEBPACK_IMPORTED_MODULE_6__["ɵa"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgModel"], _angular_material_card__WEBPACK_IMPORTED_MODULE_5__["MatCardActions"], _angular_material_button__WEBPACK_IMPORTED_MODULE_7__["MatButton"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvaG9tZS9tb2R1bGVzL2Fwcm9iYWNpb24vYXByb2JhY2lvbi5jb21wb25lbnQuY3NzIn0= */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AprobacionComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
@@ -645,7 +638,7 @@ AprobacionComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefi
                 templateUrl: "./aprobacion.component.html",
                 styleUrls: ["./aprobacion.component.css"]
             }]
-    }], function () { return [{ type: _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"] }, { type: _shared_services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"] }]; }, null); })();
+    }], function () { return [{ type: _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"] }, { type: _shared_services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"] }, { type: src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_3__["BusinessLayerService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"] }]; }, null); })();
 
 
 /***/ }),
@@ -670,6 +663,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/form-field */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/form-field.js");
 /* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/input */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/input.js");
 /* harmony import */ var ng2_ckeditor__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ng2-ckeditor */ "./node_modules/ng2-ckeditor/__ivy_ngcc__/fesm2015/ng2-ckeditor.js");
+/* harmony import */ var src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/shared/services/business-layer.service */ "./src/app/shared/services/business-layer.service.ts");
 
 
 
@@ -679,14 +673,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-/*import { FormulariosService } from "../../../../shared/services/formularios.service";
-import { HistorialService } from "../../../../shared/services/historial.service";*/
+
 
 
 class AprobacionModule {
 }
 AprobacionModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({ type: AprobacionModule });
-AprobacionModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({ factory: function AprobacionModule_Factory(t) { return new (t || AprobacionModule)(); }, providers: [ /*FormulariosService, HistorialService*/], imports: [[
+AprobacionModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({ factory: function AprobacionModule_Factory(t) { return new (t || AprobacionModule)(); }, providers: [src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_10__["BusinessLayerService"]], imports: [[
             _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
             _aprobacion_routing_module__WEBPACK_IMPORTED_MODULE_3__["AprobacionRoutingModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"],
@@ -721,7 +714,7 @@ AprobacionModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineI
                     ng2_ckeditor__WEBPACK_IMPORTED_MODULE_9__["CKEditorModule"]
                 ],
                 declarations: [_aprobacion_component__WEBPACK_IMPORTED_MODULE_2__["AprobacionComponent"]],
-                providers: [ /*FormulariosService, HistorialService*/]
+                providers: [src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_10__["BusinessLayerService"]]
             }]
     }], null, null); })();
 

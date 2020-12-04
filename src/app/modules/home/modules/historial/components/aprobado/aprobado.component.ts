@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
+import { BusinessLayerService } from 'src/app/shared/services/business-layer.service';
 import { AuthService } from "../../../../../../shared/services/auth.service";
-//import { HistorialService } from "../../../../../../shared/services/historial.service";
 
 export interface PeriodicElement {
   name: string;
@@ -9,28 +9,6 @@ export interface PeriodicElement {
   weight: string;
   symbol: string;
 }
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    position: 1,
-    name: "Spazio Calacoto",
-    weight: "Gimnasio",
-    symbol: "Aprobado"
-  },
-  { position: 2, name: "Go Achumani", weight: "Gimnasio", symbol: "Aprobado" },
-  {
-    position: 3,
-    name: "Vainilla San Miguel",
-    weight: "Café",
-    symbol: "Aprobado"
-  },
-  {
-    position: 4,
-    name: "UPB Achocalla",
-    weight: "Educación",
-    symbol: "Aprobado"
-  }
-];
 
 @Component({
   selector: "app-aprobado",
@@ -48,35 +26,37 @@ export class AprobadoComponent implements OnInit {
   ];
 
   aprobados = [];
-  dataSource = ELEMENT_DATA;
+  dataSource = [];
   aprobadoGetSubs: Subscription;
   aprobadoDeleteSubs: Subscription;
 
   constructor(
     private authService: AuthService,
-   // private historialService: HistorialService
+    private b_Layer: BusinessLayerService
   ) {}
 
   ngOnInit() {
     this.loadProduct();
+    this.dataSource = this.aprobados;
   }
 
   loadProduct(): void {
-    /*this.aprobados = [];
+    this.aprobados = [];
     const userId = this.authService.getUserId();
-    this.aprobadoGetSubs = this.historialService
-      .getProductsById(userId)
+    this.aprobadoGetSubs = this.b_Layer
+      .getProductsByIdBase(userId,"historial")
       .subscribe(res => {
         Object.entries(res).map((p: any) => {
           if (p[1].estado == "aprobado") {
             this.aprobados.push({ id: p[0], ...p[1] });
+            this.dataSource = this.aprobados;
           }
         });
-      });*/
+      });
   }
 
   onDelete(id: any): void {
-   /* this.aprobadoDeleteSubs = this.historialService.deleteProduct(id).subscribe(
+    this.aprobadoDeleteSubs = this.b_Layer.deleteProductBase(id,"historial").subscribe(
       res => {
         console.log("RESPONSE: ", res);
         this.loadProduct();
@@ -84,11 +64,11 @@ export class AprobadoComponent implements OnInit {
       err => {
         console.log("ERROR: ");
       }
-    );*/
+    );
   }
 
   ngOnDestroy() {
     this.aprobadoGetSubs ? this.aprobadoGetSubs.unsubscribe() : "";
-    this.aprobadoDeleteSubs ? this.aprobadoDeleteSubs.unsubscribe() : "";
+    //this.aprobadoDeleteSubs ? this.aprobadoDeleteSubs.unsubscribe() : "";
   }
 }

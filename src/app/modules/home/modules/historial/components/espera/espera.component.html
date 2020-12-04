@@ -5,31 +5,34 @@
 	<!-- Position Column -->
 	<ng-container matColumnDef="id">
 		<th mat-header-cell *matHeaderCellDef> ID </th>
-		<td mat-cell *matCellDef="let element"> {{element.position}} </td>
+		<td mat-cell *matCellDef="let element"> {{element.ownerId}} </td>
 	</ng-container>
 
 	<!-- Name Column -->
 	<ng-container matColumnDef="sucursal">
 		<th mat-header-cell *matHeaderCellDef> Sucursal </th>
-		<td mat-cell *matCellDef="let element"> {{element.name}} </td>
+		<td mat-cell *matCellDef="let element"> {{element.sucursal}} </td>
 	</ng-container>
 
 	<!-- Weight Column -->
 	<ng-container matColumnDef="negocio">
 		<th mat-header-cell *matHeaderCellDef> Negocio </th>
-		<td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+		<td mat-cell *matCellDef="let element"> {{element.negocio}} </td>
 	</ng-container>
 
 	<!-- Symbol Column -->
 	<ng-container matColumnDef="estado">
 		<th mat-header-cell *matHeaderCellDef> Estado </th>
-		<td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+		<td mat-cell *matCellDef="let element"> {{element.estado}} </td>
 	</ng-container>
 
 	<!-- Detalles -->
 	<ng-container matColumnDef="detalles">
 		<th mat-header-cell *matHeaderCellDef> Detalles </th>
-		<td mat-cell *matCellDef="let element"> <button type="button" class="btn btn-light">Detalles</button> </td>
+		<td mat-cell *matCellDef="let element"> <a mdbBtn color="white" outline="true"
+				class="wow fadeInDown waves-light" data-wow-delay="0.4s" mdbWavesEffect routerLink="detalle">Ver
+				Detalle</a>
+		</td>
 	</ng-container>
 
 	<!-- Delete -->

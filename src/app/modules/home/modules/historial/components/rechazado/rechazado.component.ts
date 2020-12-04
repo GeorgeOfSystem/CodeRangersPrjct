@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
+import { BusinessLayerService } from 'src/app/shared/services/business-layer.service';
 import { AuthService } from "../../../../../../shared/services/auth.service";
-//import { HistorialService } from "../../../../../../shared/services/historial.service";
 
 export interface PeriodicElement {
   name: string;
@@ -9,21 +9,6 @@ export interface PeriodicElement {
   weight: string;
   symbol: string;
 }
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    position: 1,
-    name: "Iglesia San Miguel",
-    weight: "Religión",
-    symbol: "Rechazado"
-  },
-  {
-    position: 2,
-    name: "MegaCenter Irpavi",
-    weight: "Cine",
-    symbol: "Rechazado"
-  }
-];
 
 @Component({
   selector: "app-rechazado",
@@ -40,14 +25,13 @@ export class RechazadoComponent implements OnInit {
     "delete"
   ];
 
-  dataSource = ELEMENT_DATA;
-
   rechazados = [];
+  dataSource = [];
   rechazadoGetSubs: Subscription;
   rechazadoDeleteSubs: Subscription;
   constructor(
     private authService: AuthService,
-   // private historialService: HistorialService
+    private b_Layer: BusinessLayerService
   ) {}
 
   ngOnInit() {
@@ -55,22 +39,23 @@ export class RechazadoComponent implements OnInit {
   }
 
   loadProduct(): void {
-    /*this.rechazados = [];
+    this.rechazados = [];
     const userId = this.authService.getUserId();
-    this.rechazadoGetSubs = this.historialService
-      .getProductsById(userId)
+    this.rechazadoGetSubs = this.b_Layer
+      .getProductsByIdBase(userId,"historial")
       .subscribe(res => {
         Object.entries(res).map((p: any) => {
           if (p[1].estado == "Rechazado") {
             this.rechazados.push({ id: p[0], ...p[1] });
+            this.dataSource = this.rechazados;
           }
         });
-      });*/
+      });
   }
 
   onDelete(id: any): void {
-    /*this.rechazadoDeleteSubs = this.historialService
-      .deleteProduct(id)
+    this.rechazadoDeleteSubs = this.b_Layer
+      .deleteProductBase(id,"historial")
       .subscribe(
         res => {
           console.log("RESPONSE: ", res);
@@ -79,7 +64,7 @@ export class RechazadoComponent implements OnInit {
         err => {
           console.log("ERROR: ");
         }
-      );*/
+      );
   }
 
   ngOnDestroy() {

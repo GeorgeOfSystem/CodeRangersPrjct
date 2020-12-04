@@ -47,7 +47,41 @@ export class BusinessLayerService {
     return this.data.deleteProduct(id);
   }
 
-  setCurrentElement(element){
+  //Create - Add form to the database
+  public addProductBase(mensaje: any,base: string): Observable<any> {
+    var isRepet = true;
+    this.products = [];
+    this.productGetSubs = this.data.getProducts().subscribe(res => {
+      Object.entries(res).map((p: any) => this.products.push({id: p[0], ...p[1]}));
+      this.products.forEach(element => {
+        if( mensaje == element ){
+          return
+        }
+      });
+    });
+    return this.data.addProductBase(mensaje,base)
+  }
+  
+  //Reed - get form from the database
+  public getProductsBase(base: string):Observable<any>{  
+    return this.data.getProductsBase(base);
+  }
+    //get with ID
+  public getProductsByIdBase(id: any,base: string): Observable<any> {
+    return this.data.getProductsByIdBase(id,base);
+  }
+
+  //Update - chage the information of the form [ ID needed ]
+  public updateProductBase( id:any, mensaje:any,base: string) : Observable<any> {
+    return this.data.updateProductBase(id,mensaje,base);
+  }
+
+  //Delete - remove the form from the database [ ID needed ]
+  public deleteProductBase(id: any,base: string): Observable<any> {
+    return this.data.deleteProductBase(id,base);
+  }
+
+  public setCurrentElement(element){
     this.currentElent = element;
-  }  
+  }
 }

@@ -3983,6 +3983,58 @@
           key: "deleteProduct",
           value: function deleteProduct(id) {
             return this.data.deleteProduct(id);
+          } //Create - Add form to the database
+
+        }, {
+          key: "addProductBase",
+          value: function addProductBase(mensaje, base) {
+            var _this5 = this;
+
+            var isRepet = true;
+            this.products = [];
+            this.productGetSubs = this.data.getProducts().subscribe(function (res) {
+              Object.entries(res).map(function (p) {
+                return _this5.products.push(Object.assign({
+                  id: p[0]
+                }, p[1]));
+              });
+
+              _this5.products.forEach(function (element) {
+                if (mensaje == element) {
+                  return;
+                }
+              });
+            });
+            return this.data.addProductBase(mensaje, base);
+          } //Reed - get form from the database
+
+        }, {
+          key: "getProductsBase",
+          value: function getProductsBase(base) {
+            return this.data.getProductsBase(base);
+          } //get with ID
+
+        }, {
+          key: "getProductsByIdBase",
+          value: function getProductsByIdBase(id, base) {
+            return this.data.getProductsByIdBase(id, base);
+          } //Update - chage the information of the form [ ID needed ]
+
+        }, {
+          key: "updateProductBase",
+          value: function updateProductBase(id, mensaje, base) {
+            return this.data.updateProductBase(id, mensaje, base);
+          } //Delete - remove the form from the database [ ID needed ]
+
+        }, {
+          key: "deleteProductBase",
+          value: function deleteProductBase(id, base) {
+            return this.data.deleteProductBase(id, base);
+          }
+        }, {
+          key: "setCurrentElement",
+          value: function setCurrentElement(element) {
+            this.currentElent = element;
           }
         }]);
 
@@ -4064,31 +4116,56 @@
         _createClass(DataLayerService, [{
           key: "addProduct",
           value: function addProduct(mensaje) {
-            return this.http.post("".concat(this.url, "/historial.json"), mensaje);
+            return this.http.post("".concat(this.url, "/formularios.json"), mensaje);
+          }
+        }, {
+          key: "addProductBase",
+          value: function addProductBase(mensaje, base) {
+            return this.http.post("".concat(this.url, "/").concat(base, ".json"), mensaje);
           } //Reed - get form from the database
 
         }, {
           key: "getProducts",
           value: function getProducts() {
             return this.http.get("".concat(this.url, "/formularios.json"));
+          }
+        }, {
+          key: "getProductsBase",
+          value: function getProductsBase(base) {
+            return this.http.get("".concat(this.url, "/").concat(base, ".json"));
           } //get with ID
 
         }, {
           key: "getProductsById",
           value: function getProductsById(id) {
-            return this.http.get("".concat(this.url, "/historial.json?orderBy=\"ownerId\"&equalTo=\"").concat(id, "\"&print=pretty"));
+            return this.http.get("".concat(this.url, "/formularios.json?orderBy=\"ownerId\"&equalTo=\"").concat(id, "\"&print=pretty"));
+          }
+        }, {
+          key: "getProductsByIdBase",
+          value: function getProductsByIdBase(id, base) {
+            return this.http.get("".concat(this.url, "/").concat(base, ".json?orderBy=\"ownerId\"&equalTo=\"").concat(id, "\"&print=pretty"));
           } //Update - chage the information of the form [ ID needed ]
 
         }, {
           key: "updateProduct",
           value: function updateProduct(id, mensaje) {
-            return this.http.put("".concat(this.url, "/historial/").concat(id, ".json"), mensaje);
+            return this.http.put("".concat(this.url, "/formularios/").concat(id, ".json"), mensaje);
+          }
+        }, {
+          key: "updateProductBase",
+          value: function updateProductBase(id, mensaje, base) {
+            return this.http.put("".concat(this.url, "/").concat(base, "/").concat(id, ".json"), mensaje);
           } //Delete - remove the form from the database [ ID needed ]
 
         }, {
           key: "deleteProduct",
           value: function deleteProduct(id) {
-            return this.http["delete"]("".concat(this.url, "/historial/").concat(id, ".json"));
+            return this.http["delete"]("".concat(this.url, "/formularios/").concat(id, ".json"));
+          }
+        }, {
+          key: "deleteProductBase",
+          value: function deleteProductBase(id, base) {
+            return this.http["delete"]("".concat(this.url, "/").concat(base, "/").concat(id, ".json"));
           }
         }]);
 

@@ -1,9 +1,9 @@
-import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
+import { BusinessLayerService } from 'src/app/shared/services/business-layer.service';
 import { AuthService } from "../../../../shared/services/auth.service";
-/*import { FormulariosService } from "../../../../shared/services/formularios.service";
-import { HistorialService } from "../../../../shared/services/historial.service";*/
 
 @Component({
   selector: "app-aprobacion",
@@ -12,15 +12,15 @@ import { HistorialService } from "../../../../shared/services/historial.service"
 })
 export class AprobacionComponent implements OnInit, OnDestroy {
   formularioForm: FormGroup;
-  formularioSubs: Subscription;
+  b_LayerSubs: Subscription;
   historialForm: FormGroup;
   historialSubs: Subscription;
   ckeditorContent;
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    /*private formularioService: FormulariosService,
-    private historialService: HistorialService*/
+    private b_Layer: BusinessLayerService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -40,26 +40,26 @@ export class AprobacionComponent implements OnInit, OnDestroy {
       ownerId: ""
     });
   }
-  
+
   onCreate() {
-    /*console.log("Form group: ", this.formularioForm.value);
-    this.formularioSubs = this.formularioService
-      .addProduct({
+    console.log("Form group: ", this.formularioForm.value);
+    this.b_LayerSubs = this.b_Layer
+      .addProductBase({
         ...this.formularioForm.value,
         ownerId: this.authService.getUserId(),
         estado: "En Espera",
         propuesta: this.ckeditorContent
-      })
+      },"formularios")
       .subscribe(
         res => {
           console.log("Resp: ", res);
-          this.historialSubs = this.historialService
-            .addProduct({
+          this.historialSubs = this.b_Layer
+            .addProductBase({
               sucursal: this.formularioForm.value.direccion,
               negocio: this.formularioForm.value.negocio,
               estado: "En Espera",
               ownerId: this.authService.getUserId()
-            })
+            },"historial")
             .subscribe(
               res => {
                 console.log("Resp: ", res);
@@ -68,14 +68,14 @@ export class AprobacionComponent implements OnInit, OnDestroy {
                 console.log("Error de servidor");
               }
             );
+          this.router.navigate(["historial"]);
         },
         err => {
           console.log("Error de servidor");
         }
-      );*/
+      );
   }
   ngOnDestroy() {
-    /*this.formularioSubs ? this.formularioSubs.unsubscribe() : "";
-    this.historialSubs ? this.historialSubs.unsubscribe() : "";*/
+    this.b_LayerSubs ? this.b_LayerSubs.unsubscribe() : "";
   }
 }
