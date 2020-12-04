@@ -8,6 +8,7 @@ import { AuthService } from "src/app/shared/services/auth.service";
   styleUrls: ['./audit-home.component.scss']
 })
 export class AuditHomeComponent implements OnInit {
+  
   constructor(private authService: AuthService) {}
 
   public ngOnInit(): void {}

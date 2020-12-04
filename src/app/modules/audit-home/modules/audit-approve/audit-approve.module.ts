@@ -8,6 +8,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { AuditHistoryModule } from '../audit-history/audit-history.module';
+import { AuditHomeComponent } from '../../audit-home.component';
+import { AuditHistoryComponent } from '../audit-history/audit-history.component';
 
 @NgModule({
   declarations: [AuditApproveComponent],

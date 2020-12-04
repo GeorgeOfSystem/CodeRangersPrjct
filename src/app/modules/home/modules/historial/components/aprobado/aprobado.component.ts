@@ -1,8 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
-import { AuthService } from "src/app/shared/services/auth.service";
-import { BusinessLayerService } from 'src/app/shared/services/business-layer.service';
-
+import { AuthService } from "../../../../../../shared/services/auth.service";
+//import { HistorialService } from "../../../../../../shared/services/historial.service";
 
 export interface PeriodicElement {
   name: string;
@@ -55,7 +54,7 @@ export class AprobadoComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private b_Layer: BusinessLayerService
+   // private historialService: HistorialService
   ) {}
 
   ngOnInit() {
@@ -63,19 +62,21 @@ export class AprobadoComponent implements OnInit {
   }
 
   loadProduct(): void {
-    this.aprobados = [];
+    /*this.aprobados = [];
     const userId = this.authService.getUserId();
-    this.aprobadoGetSubs = this.b_Layer
+    this.aprobadoGetSubs = this.historialService
       .getProductsById(userId)
       .subscribe(res => {
-        Object.entries(res).map((p: any) =>
-          this.aprobados.push({ id: p[0], ...p[1] })
-        );
-      });
+        Object.entries(res).map((p: any) => {
+          if (p[1].estado == "aprobado") {
+            this.aprobados.push({ id: p[0], ...p[1] });
+          }
+        });
+      });*/
   }
 
   onDelete(id: any): void {
-    this.aprobadoDeleteSubs = this.b_Layer.deleteProduct(id).subscribe(
+   /* this.aprobadoDeleteSubs = this.historialService.deleteProduct(id).subscribe(
       res => {
         console.log("RESPONSE: ", res);
         this.loadProduct();
@@ -83,7 +84,7 @@ export class AprobadoComponent implements OnInit {
       err => {
         console.log("ERROR: ");
       }
-    );
+    );*/
   }
 
   ngOnDestroy() {

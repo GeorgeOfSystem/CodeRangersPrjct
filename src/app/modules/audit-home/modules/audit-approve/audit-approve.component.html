@@ -3,46 +3,38 @@
 		<mat-card-title>Formulario</mat-card-title>
 	</mat-card-header>
 	<mat-card-content>
-		<form [formGroup]="formularioForm">
 			<div class="row">
 				<div class="col">
-					<label for="exampleFormControlInput1">Nombre Empresa</label>
-					<input type="text" formControlName="nombre" class="form-control" placeholder="Empresa">
+					<label for="exampleFormControlInput1">Nombre Empresa: </label>
+					<p>{{element.nombre}}</p>
     </div>
 					<div class="col">
 						<label for="exampleFormControlInput1">Tipo de Negocio</label>
-						<select class="form-control" formControlName="negocio">
-        <option>Restaurante</option>
-        <option>Gimnasio</option>
-        <option>Café</option>
-        <option>Educación</option>
-        <option>Religión</option>
-</select>
+						<p>{{element.negocio}}</p>
 					</div>
 				</div>
 				&nbsp;
 				&nbsp;
 				<div class="form-group">
 					<label for="exampleFormControlInput1">Dirección</label>
-					<input type="email" class="form-control" formControlName="direccion" id="exampleFormControlInput1" placeholder="San miguel Calacoto Local 230">
+					<p>{{element.direccion}}</p>
   </div>
 					&nbsp;
 					&nbsp;
 					<div class="form-group">
 						<label for="exampleFormControlTextarea1">Requisitos</label>
-						<textarea class="form-control" formControlName="requisitos" id="exampleFormControlTextarea1" rows="3"></textarea>
+						<p>{{element.requisitos}}</p>
 					</div>
 					&nbsp;
 					&nbsp;
 					<div class="form-group">
 						<label for="exampleFormControlTextarea1">Propuesta</label>
-						<textarea class="form-control" formControlName="propuesta" id="exampleFormControlTextarea1" rows="3"></textarea>
+						<p>{{element.propuesta}}</p>
 					</div>
 					&nbsp;
 					&nbsp;
-		</form>
 	</mat-card-content>
 	<mat-card-actions style="text-align:center">
-		<button mat-button (click)="onCreate()" >Enviar</button>
+		<!--button mat-button (click)="onCreate()" >Enviar</button-->
 	</mat-card-actions>
 </mat-card>

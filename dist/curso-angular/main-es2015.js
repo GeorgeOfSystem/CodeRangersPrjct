@@ -3046,7 +3046,7 @@ const routes = [
     { path: "", redirectTo: "login", pathMatch: "full" },
     {
         path: "login",
-        loadChildren: () => Promise.all(/*! import() | modules-login-login-module */[__webpack_require__.e("default~modules-aprobacion-aprobacion-module~modules-audit-history-audit-history-module~modules-hist~382a5ff9"), __webpack_require__.e("modules-login-login-module")]).then(__webpack_require__.bind(null, /*! ./modules/login/login.module */ "./src/app/modules/login/login.module.ts")).then(m => m.LoginModule)
+        loadChildren: () => Promise.all(/*! import() | modules-login-login-module */[__webpack_require__.e("default~modules-aprobacion-aprobacion-module~modules-audit-approve-audit-approve-module~modules-audi~92018fd8"), __webpack_require__.e("modules-login-login-module")]).then(__webpack_require__.bind(null, /*! ./modules/login/login.module */ "./src/app/modules/login/login.module.ts")).then(m => m.LoginModule)
     },
     {
         path: "home",

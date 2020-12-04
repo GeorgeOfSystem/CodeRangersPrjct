@@ -67,7 +67,7 @@
           loadChildren: function loadChildren() {
             return Promise.all(
             /*! import() | modules-historial-historial-module */
-            [__webpack_require__.e("default~modules-aprobacion-aprobacion-module~modules-audit-history-audit-history-module~modules-hist~382a5ff9"), __webpack_require__.e("default~modules-audit-history-audit-history-module~modules-historial-historial-module"), __webpack_require__.e("modules-historial-historial-module")]).then(__webpack_require__.bind(null,
+            [__webpack_require__.e("default~modules-aprobacion-aprobacion-module~modules-audit-approve-audit-approve-module~modules-audi~92018fd8"), __webpack_require__.e("default~modules-audit-history-audit-history-module~modules-historial-historial-module"), __webpack_require__.e("modules-historial-historial-module")]).then(__webpack_require__.bind(null,
             /*! ./modules/historial/historial.module */
             "./src/app/modules/home/modules/historial/historial.module.ts")).then(function (m) {
               return m.HistorialModule;
@@ -78,7 +78,7 @@
           loadChildren: function loadChildren() {
             return Promise.all(
             /*! import() | modules-aprobacion-aprobacion-module */
-            [__webpack_require__.e("default~modules-aprobacion-aprobacion-module~modules-audit-history-audit-history-module~modules-hist~382a5ff9"), __webpack_require__.e("modules-aprobacion-aprobacion-module")]).then(__webpack_require__.bind(null,
+            [__webpack_require__.e("default~modules-aprobacion-aprobacion-module~modules-audit-approve-audit-approve-module~modules-audi~92018fd8"), __webpack_require__.e("modules-aprobacion-aprobacion-module")]).then(__webpack_require__.bind(null,
             /*! ./modules/aprobacion/aprobacion.module */
             "./src/app/modules/home/modules/aprobacion/aprobacion.module.ts")).then(function (m) {
               return m.AprobacionModule;
@@ -162,8 +162,8 @@
       /* harmony import */
 
 
-      var src_app_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! src/app/shared/services/auth.service */
+      var _shared_services_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ../../shared/services/auth.service */
       "./src/app/shared/services/auth.service.ts");
       /* harmony import */
 
@@ -193,7 +193,7 @@
       }();
 
       HomeComponent.ɵfac = function HomeComponent_Factory(t) {
-        return new (t || HomeComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"]));
+        return new (t || HomeComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"]));
       };
 
       HomeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
@@ -302,7 +302,7 @@
           }]
         }], function () {
           return [{
-            type: src_app_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"]
+            type: _shared_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"]
           }];
         }, null);
       })();

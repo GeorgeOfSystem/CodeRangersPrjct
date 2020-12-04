@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-audit-history',
@@ -6,9 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./audit-history.component.scss']
 })
 export class AuditHistoryComponent implements OnInit {
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
-
 }

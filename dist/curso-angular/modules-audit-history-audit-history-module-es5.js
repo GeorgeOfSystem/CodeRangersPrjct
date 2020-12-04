@@ -125,19 +125,7 @@
       /* harmony import */
 
 
-      var _components_approve_approve_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-      /*! ./components/approve/approve.component */
-      "./src/app/modules/audit-home/modules/audit-history/components/approve/approve.component.ts");
-      /* harmony import */
-
-
-      var _components_rejected_rejected_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-      /*! ./components/rejected/rejected.component */
-      "./src/app/modules/audit-home/modules/audit-history/components/rejected/rejected.component.ts");
-      /* harmony import */
-
-
-      var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
       /*! @angular/router */
       "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 
@@ -163,26 +151,26 @@
         selectors: [["app-audit-history"]],
         decls: 8,
         vars: 0,
-        consts: [["mat-align-tabs", "center"], ["label", "En espera"], ["label", "Aprobado"], ["label", "Rechazado"]],
+        consts: [["mat-align-tabs", "center"], ["label", "En espera"], ["state", "En Espera"], ["label", "Aprobado"], ["state", "Aprobado"], ["label", "Rechazado"], ["state", "Rechazado"]],
         template: function AuditHistoryComponent_Template(rf, ctx) {
           if (rf & 1) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-tab-group", 0);
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "mat-tab", 1);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "waiting");
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "waiting", 2);
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "mat-tab", 2);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "mat-tab", 3);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](4, "approve");
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](4, "waiting", 4);
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "mat-tab", 3);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "mat-tab", 5);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](6, "rejected");
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](6, "waiting", 6);
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -191,7 +179,7 @@
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](7, "router-outlet");
           }
         },
-        directives: [_angular_material_tabs__WEBPACK_IMPORTED_MODULE_1__["MatTabGroup"], _angular_material_tabs__WEBPACK_IMPORTED_MODULE_1__["MatTab"], _components_waiting_waiting_component__WEBPACK_IMPORTED_MODULE_2__["WaitingComponent"], _components_approve_approve_component__WEBPACK_IMPORTED_MODULE_3__["ApproveComponent"], _components_rejected_rejected_component__WEBPACK_IMPORTED_MODULE_4__["RejectedComponent"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterOutlet"]],
+        directives: [_angular_material_tabs__WEBPACK_IMPORTED_MODULE_1__["MatTabGroup"], _angular_material_tabs__WEBPACK_IMPORTED_MODULE_1__["MatTab"], _components_waiting_waiting_component__WEBPACK_IMPORTED_MODULE_2__["WaitingComponent"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterOutlet"]],
         styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvYXVkaXQtaG9tZS9tb2R1bGVzL2F1ZGl0LWhpc3RvcnkvYXVkaXQtaGlzdG9yeS5jb21wb25lbnQuc2NzcyJ9 */"]
       });
       /*@__PURE__*/
@@ -592,13 +580,19 @@
       /* harmony import */
 
 
-      var _angular_material_table__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      var src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! src/app/shared/services/business-layer.service */
+      "./src/app/shared/services/business-layer.service.ts");
+      /* harmony import */
+
+
+      var _angular_material_table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
       /*! @angular/material/table */
       "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/table.js");
       /* harmony import */
 
 
-      var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
       /*! @angular/router */
       "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 
@@ -750,46 +744,39 @@
         }
       }
 
-      var ELEMENT_DATA = [{
-        position: 1,
-        name: "Spazio Calacoto",
-        weight: "Gimnasio",
-        symbol: "Aprobado"
-      }, {
-        position: 2,
-        name: "Go Achumani",
-        weight: "Gimnasio",
-        symbol: "Aprobado"
-      }, {
-        position: 3,
-        name: "Vainilla San Miguel",
-        weight: "Café",
-        symbol: "Aprobado"
-      }, {
-        position: 4,
-        name: "UPB Achocalla",
-        weight: "Educación",
-        symbol: "Aprobado"
-      }];
-
       var ApproveComponent = /*#__PURE__*/function () {
-        function ApproveComponent() {
+        function ApproveComponent(b_Layer) {
           _classCallCheck(this, ApproveComponent);
 
-          this.displayedColumns = ["position", "name", "weight", "symbol", "document"];
-          this.dataSource = ELEMENT_DATA;
+          this.b_Layer = b_Layer;
+          this.products = [];
         }
 
         _createClass(ApproveComponent, [{
           key: "ngOnInit",
-          value: function ngOnInit() {}
+          value: function ngOnInit() {
+            var _this = this;
+
+            this.products = [];
+            this.productGetSubs = this.b_Layer.getProducts().subscribe(function (res) {
+              Object.entries(res).map(function (p) {
+                return _this.products.push(Object.assign({
+                  id: p[0]
+                }, p[1]));
+              });
+              _this.displayedColumns = ["ownerId", "nombre", "negocio", "estado", "document"];
+              _this.dataSource = _this.products.filter(function (s) {
+                return s.estado == "Aprobado";
+              });
+            });
+          }
         }]);
 
         return ApproveComponent;
       }();
 
       ApproveComponent.ɵfac = function ApproveComponent_Factory(t) {
-        return new (t || ApproveComponent)();
+        return new (t || ApproveComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_1__["BusinessLayerService"]));
       };
 
       ApproveComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
@@ -861,7 +848,7 @@
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("matRowDefColumns", ctx.displayedColumns);
           }
         },
-        directives: [_angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatTable"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatColumnDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatHeaderCellDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatCellDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatHeaderRowDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatRowDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatHeaderCell"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatCell"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterLinkWithHref"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatHeaderRow"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatRow"]],
+        directives: [_angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatTable"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatColumnDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderCellDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatCellDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderRowDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatRowDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderCell"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatCell"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterLinkWithHref"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderRow"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatRow"]],
         styles: ["table[_ngcontent-%COMP%] {\n  width: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9hdWRpdC1ob21lL21vZHVsZXMvYXVkaXQtaGlzdG9yeS9jb21wb25lbnRzL2FwcHJvdmUvYXBwcm92ZS5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFdBQUE7QUFDSiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvYXVkaXQtaG9tZS9tb2R1bGVzL2F1ZGl0LWhpc3RvcnkvY29tcG9uZW50cy9hcHByb3ZlL2FwcHJvdmUuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJ0YWJsZSB7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICB9XHJcbiAgIl19 */"]
       });
       /*@__PURE__*/
@@ -875,7 +862,9 @@
             styleUrls: ['./approve.component.scss']
           }]
         }], function () {
-          return [];
+          return [{
+            type: src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_1__["BusinessLayerService"]
+          }];
         }, null);
       })();
       /***/
@@ -910,13 +899,19 @@
       /* harmony import */
 
 
-      var _angular_material_table__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      var src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! src/app/shared/services/business-layer.service */
+      "./src/app/shared/services/business-layer.service.ts");
+      /* harmony import */
+
+
+      var _angular_material_table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
       /*! @angular/material/table */
       "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/table.js");
       /* harmony import */
 
 
-      var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
       /*! @angular/router */
       "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 
@@ -1068,36 +1063,39 @@
         }
       }
 
-      var ELEMENT_DATA = [{
-        position: 1,
-        name: "Iglesia San Miguel",
-        weight: "Religión",
-        symbol: "Rechazado"
-      }, {
-        position: 2,
-        name: "MegaCenter Irpavi",
-        weight: "Cine",
-        symbol: "Rechazado"
-      }];
-
       var RejectedComponent = /*#__PURE__*/function () {
-        function RejectedComponent() {
+        function RejectedComponent(b_Layer) {
           _classCallCheck(this, RejectedComponent);
 
-          this.displayedColumns = ["position", "name", "weight", "symbol", "document"];
-          this.dataSource = ELEMENT_DATA;
+          this.b_Layer = b_Layer;
+          this.products = [];
         }
 
         _createClass(RejectedComponent, [{
           key: "ngOnInit",
-          value: function ngOnInit() {}
+          value: function ngOnInit() {
+            var _this2 = this;
+
+            this.products = [];
+            this.productGetSubs = this.b_Layer.getProducts().subscribe(function (res) {
+              Object.entries(res).map(function (p) {
+                return _this2.products.push(Object.assign({
+                  id: p[0]
+                }, p[1]));
+              });
+              _this2.displayedColumns = ["ownerId", "nombre", "negocio", "estado", "document"];
+              _this2.dataSource = _this2.products.filter(function (s) {
+                return s.estado == "Rechazado";
+              });
+            });
+          }
         }]);
 
         return RejectedComponent;
       }();
 
       RejectedComponent.ɵfac = function RejectedComponent_Factory(t) {
-        return new (t || RejectedComponent)();
+        return new (t || RejectedComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_1__["BusinessLayerService"]));
       };
 
       RejectedComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
@@ -1169,7 +1167,7 @@
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("matRowDefColumns", ctx.displayedColumns);
           }
         },
-        directives: [_angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatTable"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatColumnDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatHeaderCellDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatCellDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatHeaderRowDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatRowDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatHeaderCell"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatCell"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterLinkWithHref"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatHeaderRow"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatRow"]],
+        directives: [_angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatTable"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatColumnDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderCellDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatCellDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderRowDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatRowDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderCell"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatCell"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterLinkWithHref"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderRow"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatRow"]],
         styles: ["table[_ngcontent-%COMP%] {\n  width: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9hdWRpdC1ob21lL21vZHVsZXMvYXVkaXQtaGlzdG9yeS9jb21wb25lbnRzL3JlamVjdGVkL3JlamVjdGVkLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksV0FBQTtBQUNKIiwiZmlsZSI6InNyYy9hcHAvbW9kdWxlcy9hdWRpdC1ob21lL21vZHVsZXMvYXVkaXQtaGlzdG9yeS9jb21wb25lbnRzL3JlamVjdGVkL3JlamVjdGVkLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsidGFibGUge1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgfSAgIl19 */"]
       });
       /*@__PURE__*/
@@ -1183,7 +1181,9 @@
             styleUrls: ['./rejected.component.scss']
           }]
         }], function () {
-          return [];
+          return [{
+            type: src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_1__["BusinessLayerService"]
+          }];
         }, null);
       })();
       /***/
@@ -1218,25 +1218,19 @@
       /* harmony import */
 
 
-      var src_app_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! src/app/shared/services/auth.service */
-      "./src/app/shared/services/auth.service.ts");
-      /* harmony import */
-
-
-      var src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      var src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
       /*! src/app/shared/services/business-layer.service */
       "./src/app/shared/services/business-layer.service.ts");
       /* harmony import */
 
 
-      var _angular_material_table__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      var _angular_material_table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
       /*! @angular/material/table */
       "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/table.js");
       /* harmony import */
 
 
-      var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
       /*! @angular/router */
       "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 
@@ -1264,7 +1258,7 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", element_r12.position, " ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", element_r12.ownerId, " ");
         }
       }
 
@@ -1292,7 +1286,7 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", element_r13.name, " ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", element_r13.nombre, " ");
         }
       }
 
@@ -1320,7 +1314,7 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", element_r14.weight, " ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", element_r14.negocio, " ");
         }
       }
 
@@ -1348,7 +1342,7 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", element_r15.symbol, " ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", element_r15.estado, " ");
         }
       }
 
@@ -1388,72 +1382,31 @@
         }
       }
 
-      var ELEMENT_DATA = [{
-        position: 1,
-        name: "Pizza Steve Achumani",
-        weight: "Restaurante",
-        symbol: "Rechazado"
-      }, {
-        position: 2,
-        name: "Pizza Steve San Miguel",
-        weight: "Restaurante",
-        symbol: "Rechazado"
-      }, {
-        position: 3,
-        name: "Bonsu Cota Cota",
-        weight: "Restaurante",
-        symbol: "Rechazado"
-      }];
-
       var WaitingComponent = /*#__PURE__*/function () {
-        function WaitingComponent(authService, b_Layer) {
+        function WaitingComponent(b_Layer) {
           _classCallCheck(this, WaitingComponent);
 
-          this.authService = authService;
           this.b_Layer = b_Layer;
-          this.displayedColumns = ["id", "sucursal", "negocio", "estado", "detalles", "delete"];
-          this.dataSource = ELEMENT_DATA;
-          this.espera = [];
+          this.products = [];
         }
 
         _createClass(WaitingComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            this.loadProduct();
-          }
-        }, {
-          key: "loadProduct",
-          value: function loadProduct() {
-            var _this = this;
+            var _this3 = this;
 
-            this.espera = [];
-            var userId = this.authService.getUserId();
-            this.esperaGetSubs = this.b_Layer.getProductsById(userId).subscribe(function (res) {
+            this.products = [];
+            this.productGetSubs = this.b_Layer.getProducts().subscribe(function (res) {
               Object.entries(res).map(function (p) {
-                return _this.espera.push(Object.assign({
+                return _this3.products.push(Object.assign({
                   id: p[0]
                 }, p[1]));
               });
+              _this3.displayedColumns = ["ownerId", "nombre", "negocio", "estado", "document"];
+              _this3.dataSource = _this3.products.filter(function (s) {
+                return s.estado == _this3.state;
+              });
             });
-          }
-        }, {
-          key: "onDelete",
-          value: function onDelete(id) {
-            var _this2 = this;
-
-            this.esperaDeleteSubs = this.b_Layer.deleteProduct(id).subscribe(function (res) {
-              console.log("RESPONSE: ", res);
-
-              _this2.loadProduct();
-            }, function (err) {
-              console.log("ERROR: ");
-            });
-          }
-        }, {
-          key: "ngOnDestroy",
-          value: function ngOnDestroy() {
-            this.esperaGetSubs ? this.esperaGetSubs.unsubscribe() : "";
-            this.esperaDeleteSubs ? this.esperaDeleteSubs.unsubscribe() : "";
           }
         }]);
 
@@ -1461,15 +1414,18 @@
       }();
 
       WaitingComponent.ɵfac = function WaitingComponent_Factory(t) {
-        return new (t || WaitingComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_2__["BusinessLayerService"]));
+        return new (t || WaitingComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_1__["BusinessLayerService"]));
       };
 
       WaitingComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
         type: WaitingComponent,
         selectors: [["waiting"]],
+        inputs: {
+          state: "state"
+        },
         decls: 18,
         vars: 3,
-        consts: [["mat-table", "", 1, "mat-elevation-z8", 3, "dataSource"], ["matColumnDef", "position"], ["mat-header-cell", "", 4, "matHeaderCellDef"], ["mat-cell", "", 4, "matCellDef"], ["matColumnDef", "name"], ["matColumnDef", "weight"], ["matColumnDef", "symbol"], ["matColumnDef", "document"], ["mat-header-row", "", 4, "matHeaderRowDef"], ["mat-row", "", 4, "matRowDef", "matRowDefColumns"], ["mat-header-cell", ""], ["mat-cell", ""], ["mdbBtn", "", "color", "white", "outline", "true", "data-wow-delay", "0.4s", "mdbWavesEffect", "", "routerLink", "/auditHome/audit-approve", 1, "wow", "fadeInDown", "waves-light"], ["mat-header-row", ""], ["mat-row", ""]],
+        consts: [["mat-table", "", 1, "mat-elevation-z8", 3, "dataSource"], ["matColumnDef", "ownerId"], ["mat-header-cell", "", 4, "matHeaderCellDef"], ["mat-cell", "", 4, "matCellDef"], ["matColumnDef", "nombre"], ["matColumnDef", "negocio"], ["matColumnDef", "estado"], ["matColumnDef", "document"], ["mat-header-row", "", 4, "matHeaderRowDef"], ["mat-row", "", 4, "matRowDef", "matRowDefColumns"], ["mat-header-cell", ""], ["mat-cell", ""], ["mdbBtn", "", "color", "white", "outline", "true", "data-wow-delay", "0.4s", "mdbWavesEffect", "", "routerLink", "/auditHome/audit-approve", 1, "wow", "fadeInDown", "waves-light"], ["mat-header-row", ""], ["mat-row", ""]],
         template: function WaitingComponent_Template(rf, ctx) {
           if (rf & 1) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "table", 0);
@@ -1533,7 +1489,7 @@
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("matRowDefColumns", ctx.displayedColumns);
           }
         },
-        directives: [_angular_material_table__WEBPACK_IMPORTED_MODULE_3__["MatTable"], _angular_material_table__WEBPACK_IMPORTED_MODULE_3__["MatColumnDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_3__["MatHeaderCellDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_3__["MatCellDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_3__["MatHeaderRowDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_3__["MatRowDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_3__["MatHeaderCell"], _angular_material_table__WEBPACK_IMPORTED_MODULE_3__["MatCell"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterLinkWithHref"], _angular_material_table__WEBPACK_IMPORTED_MODULE_3__["MatHeaderRow"], _angular_material_table__WEBPACK_IMPORTED_MODULE_3__["MatRow"]],
+        directives: [_angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatTable"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatColumnDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderCellDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatCellDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderRowDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatRowDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderCell"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatCell"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterLinkWithHref"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatHeaderRow"], _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatRow"]],
         styles: ["table[_ngcontent-%COMP%] {\n  width: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9hdWRpdC1ob21lL21vZHVsZXMvYXVkaXQtaGlzdG9yeS9jb21wb25lbnRzL3dhaXRpbmcvd2FpdGluZy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFdBQUE7QUFDSiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvYXVkaXQtaG9tZS9tb2R1bGVzL2F1ZGl0LWhpc3RvcnkvY29tcG9uZW50cy93YWl0aW5nL3dhaXRpbmcuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJ0YWJsZSB7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICB9ICAiXX0= */"]
       });
       /*@__PURE__*/
@@ -1548,11 +1504,13 @@
           }]
         }], function () {
           return [{
-            type: src_app_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"]
-          }, {
-            type: src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_2__["BusinessLayerService"]
+            type: src_app_shared_services_business_layer_service__WEBPACK_IMPORTED_MODULE_1__["BusinessLayerService"]
           }];
-        }, null);
+        }, {
+          state: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
+          }]
+        });
       })();
       /***/
 

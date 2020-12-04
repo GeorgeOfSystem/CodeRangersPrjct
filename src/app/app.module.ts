@@ -10,7 +10,6 @@ import { AuthService } from './shared/services/auth.service';
 import { BusinessLayerService } from './shared/services/business-layer.service';
 import { DataLayerService } from './shared/services/data-layer.service';
 
-
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
   {

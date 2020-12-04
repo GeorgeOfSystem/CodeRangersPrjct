@@ -119,8 +119,8 @@
       /* harmony import */
 
 
-      var src_app_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! src/app/shared/services/auth.service */
+      var _shared_services_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ../../shared/services/auth.service */
       "./src/app/shared/services/auth.service.ts");
       /* harmony import */
 
@@ -248,10 +248,6 @@
               if (form.value.email == "ministerio@bo.com") {
                 console.log("LOGIN RESPONSE: ", res);
 
-                _this.router.navigate(["auditHome"]);
-              } else {
-                console.log("LOGIN RESPONSE: ", res);
-
                 _this.router.navigate(["home"]);
               }
             }, function (err) {
@@ -270,7 +266,7 @@
       }();
 
       LoginComponent.ɵfac = function LoginComponent_Factory(t) {
-        return new (t || LoginComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]));
+        return new (t || LoginComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]));
       };
 
       LoginComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
@@ -417,7 +413,7 @@
           return [{
             type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]
           }, {
-            type: src_app_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]
+            type: _shared_services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]
           }];
         }, null);
       })();

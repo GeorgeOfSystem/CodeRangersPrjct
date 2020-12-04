@@ -6,6 +6,7 @@ import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class BusinessLayerService {
+  currentElent;
   url = environment.app.apiBaseUrl;
   productGetSubs: Subscription;
   products = []
@@ -45,5 +46,8 @@ export class BusinessLayerService {
   public deleteProduct(id: any): Observable<any> {
     return this.data.deleteProduct(id);
   }
-  
+
+  setCurrentElement(element){
+    this.currentElent = element;
+  }  
 }

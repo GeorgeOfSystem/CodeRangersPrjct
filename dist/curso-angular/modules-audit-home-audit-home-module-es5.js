@@ -56,7 +56,7 @@
           loadChildren: function loadChildren() {
             return Promise.all(
             /*! import() | modules-audit-history-audit-history-module */
-            [__webpack_require__.e("default~modules-aprobacion-aprobacion-module~modules-audit-history-audit-history-module~modules-hist~382a5ff9"), __webpack_require__.e("default~modules-audit-history-audit-history-module~modules-historial-historial-module"), __webpack_require__.e("modules-audit-history-audit-history-module")]).then(__webpack_require__.bind(null,
+            [__webpack_require__.e("default~modules-aprobacion-aprobacion-module~modules-audit-approve-audit-approve-module~modules-audi~92018fd8"), __webpack_require__.e("default~modules-audit-history-audit-history-module~modules-historial-historial-module"), __webpack_require__.e("modules-audit-history-audit-history-module")]).then(__webpack_require__.bind(null,
             /*! ./modules/audit-history/audit-history.module */
             "./src/app/modules/audit-home/modules/audit-history/audit-history.module.ts")).then(function (m) {
               return m.AuditHistoryModule;
@@ -65,9 +65,9 @@
         }, {
           path: "audit-approve",
           loadChildren: function loadChildren() {
-            return __webpack_require__.e(
+            return Promise.all(
             /*! import() | modules-audit-approve-audit-approve-module */
-            "modules-audit-approve-audit-approve-module").then(__webpack_require__.bind(null,
+            [__webpack_require__.e("default~modules-aprobacion-aprobacion-module~modules-audit-approve-audit-approve-module~modules-audi~92018fd8"), __webpack_require__.e("modules-audit-approve-audit-approve-module")]).then(__webpack_require__.bind(null,
             /*! ./modules/audit-approve/audit-approve.module */
             "./src/app/modules/audit-home/modules/audit-approve/audit-approve.module.ts")).then(function (m) {
               return m.AuditApproveModule;

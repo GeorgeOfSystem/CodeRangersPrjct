@@ -30,11 +30,11 @@ const routes = [
             },
             {
                 path: "historial",
-                loadChildren: () => Promise.all(/*! import() | modules-historial-historial-module */[__webpack_require__.e("default~modules-aprobacion-aprobacion-module~modules-audit-history-audit-history-module~modules-hist~382a5ff9"), __webpack_require__.e("default~modules-audit-history-audit-history-module~modules-historial-historial-module"), __webpack_require__.e("modules-historial-historial-module")]).then(__webpack_require__.bind(null, /*! ./modules/historial/historial.module */ "./src/app/modules/home/modules/historial/historial.module.ts")).then(m => m.HistorialModule)
+                loadChildren: () => Promise.all(/*! import() | modules-historial-historial-module */[__webpack_require__.e("default~modules-aprobacion-aprobacion-module~modules-audit-approve-audit-approve-module~modules-audi~92018fd8"), __webpack_require__.e("default~modules-audit-history-audit-history-module~modules-historial-historial-module"), __webpack_require__.e("modules-historial-historial-module")]).then(__webpack_require__.bind(null, /*! ./modules/historial/historial.module */ "./src/app/modules/home/modules/historial/historial.module.ts")).then(m => m.HistorialModule)
             },
             {
                 path: "aprobacion",
-                loadChildren: () => Promise.all(/*! import() | modules-aprobacion-aprobacion-module */[__webpack_require__.e("default~modules-aprobacion-aprobacion-module~modules-audit-history-audit-history-module~modules-hist~382a5ff9"), __webpack_require__.e("modules-aprobacion-aprobacion-module")]).then(__webpack_require__.bind(null, /*! ./modules/aprobacion/aprobacion.module */ "./src/app/modules/home/modules/aprobacion/aprobacion.module.ts")).then(m => m.AprobacionModule)
+                loadChildren: () => Promise.all(/*! import() | modules-aprobacion-aprobacion-module */[__webpack_require__.e("default~modules-aprobacion-aprobacion-module~modules-audit-approve-audit-approve-module~modules-audi~92018fd8"), __webpack_require__.e("modules-aprobacion-aprobacion-module")]).then(__webpack_require__.bind(null, /*! ./modules/aprobacion/aprobacion.module */ "./src/app/modules/home/modules/aprobacion/aprobacion.module.ts")).then(m => m.AprobacionModule)
             },
             {
                 path: "perfil",
@@ -70,7 +70,7 @@ HomeRoutingModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeComponent", function() { return HomeComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var src_app_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/shared/services/auth.service */ "./src/app/shared/services/auth.service.ts");
+/* harmony import */ var _shared_services_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../shared/services/auth.service */ "./src/app/shared/services/auth.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 
 
@@ -85,7 +85,7 @@ class HomeComponent {
         this.authService.logout();
     }
 }
-HomeComponent.ɵfac = function HomeComponent_Factory(t) { return new (t || HomeComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"])); };
+HomeComponent.ɵfac = function HomeComponent_Factory(t) { return new (t || HomeComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"])); };
 HomeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: HomeComponent, selectors: [["app-home"]], decls: 24, vars: 0, consts: [[1, "navbar", "navbar-expand-lg", "navbar-light", "bg-white"], ["routerLink", "inicio", 1, "navbar-brand"], ["type", "button", "data-toggle", "collapse", "data-target", "#navbarNav", "aria-controls", "navbarNav", "aria-expanded", "false", "aria-label", "Toggle navigation", 1, "navbar-toggler"], [1, "navbar-toggler-icon"], ["id", "navbarNav", 1, "collapse", "navbar-collapse"], [1, "navbar-nav"], [1, "nav-item", "active"], ["routerLink", "inicio", 1, "nav-link"], [1, "sr-only"], [1, "nav-item"], ["routerLink", "aprobacion", 1, "nav-link"], ["routerLink", "historial", 1, "nav-link"], ["routerLink", "perfil", 1, "nav-link"], ["type", "button", 1, "btn", "btn-light", 3, "click"]], template: function HomeComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "nav", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 1);
@@ -135,7 +135,7 @@ HomeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComp
                 templateUrl: "./home.component.html",
                 styleUrls: ["./home.component.css"]
             }]
-    }], function () { return [{ type: src_app_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"] }]; }, null); })();
+    }], function () { return [{ type: _shared_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"] }]; }, null); })();
 
 
 /***/ }),

@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { BusinessLayerService } from 'src/app/shared/services/business-layer.service';
+import { AuditHistoryComponent } from '../audit-history/audit-history.component';
+import { AuditHistoryModule } from '../audit-history/audit-history.module';
 
 @Component({
   selector: 'app-audit-approve',
@@ -9,19 +12,25 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./audit-approve.component.scss']
 })
 export class AuditApproveComponent implements OnInit {
+  element;
+  prueba = "prueba";
   formularioForm: FormGroup;
   formularioSubs: Subscription;
   historialForm: FormGroup;
   historialSubs: Subscription;
+
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
+    private b_Layer: BusinessLayerService
     /*private formularioService: FormulariosService,
     private historialService: HistorialService*/
   ) {}
 
   ngOnInit() {
-    this.formularioForm = this.formBuilder.group({
+    this.element = this.b_Layer.currentElent
+    console.log(this.element.nombre)
+    /*this.formularioForm = this.formBuilder.group({
       nombre: ["", [Validators.required]],
       negocio: ["", [Validators.required]],
       direccion: ["", [Validators.required]],
@@ -35,12 +44,12 @@ export class AuditApproveComponent implements OnInit {
       negocio: "",
       estado: "",
       ownerId: ""
-    });
+    });*/
   }
 
   onCreate() {
-    console.log("Form group: ", this.formularioForm.value);
-    /*this.formularioSubs = this.formularioService
+    /*console.log("Form group: ", this.formularioForm.value);
+    this.formularioSubs = this.formularioService
       .addProduct({
         ...this.formularioForm.value,
         ownerId: this.authService.getUserId(),
@@ -71,8 +80,9 @@ export class AuditApproveComponent implements OnInit {
       );*/
   }
   ngOnDestroy() {
-    this.formularioSubs ? this.formularioSubs.unsubscribe() : "";
-    this.historialSubs ? this.historialSubs.unsubscribe() : "";
+    this.b_Layer.setCurrentElement(null);
+    //this.formularioSubs ? this.formularioSubs.unsubscribe() : "";
+    //this.historialSubs ? this.historialSubs.unsubscribe() : "";
   }
   
 }

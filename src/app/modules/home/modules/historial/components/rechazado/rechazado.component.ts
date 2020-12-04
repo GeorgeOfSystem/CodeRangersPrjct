@@ -1,8 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
-import { AuthService } from "src/app/shared/services/auth.service";
-import { BusinessLayerService } from 'src/app/shared/services/business-layer.service';
-
+import { AuthService } from "../../../../../../shared/services/auth.service";
+//import { HistorialService } from "../../../../../../shared/services/historial.service";
 
 export interface PeriodicElement {
   name: string;
@@ -48,7 +47,7 @@ export class RechazadoComponent implements OnInit {
   rechazadoDeleteSubs: Subscription;
   constructor(
     private authService: AuthService,
-    private b_Layer: BusinessLayerService
+   // private historialService: HistorialService
   ) {}
 
   ngOnInit() {
@@ -56,19 +55,21 @@ export class RechazadoComponent implements OnInit {
   }
 
   loadProduct(): void {
-    this.rechazados = [];
+    /*this.rechazados = [];
     const userId = this.authService.getUserId();
-    this.rechazadoGetSubs = this.b_Layer
+    this.rechazadoGetSubs = this.historialService
       .getProductsById(userId)
       .subscribe(res => {
-        Object.entries(res).map((p: any) =>
-          this.rechazados.push({ id: p[0], ...p[1] })
-        );
-      });
+        Object.entries(res).map((p: any) => {
+          if (p[1].estado == "Rechazado") {
+            this.rechazados.push({ id: p[0], ...p[1] });
+          }
+        });
+      });*/
   }
 
   onDelete(id: any): void {
-    this.rechazadoDeleteSubs = this.b_Layer
+    /*this.rechazadoDeleteSubs = this.historialService
       .deleteProduct(id)
       .subscribe(
         res => {
@@ -78,7 +79,7 @@ export class RechazadoComponent implements OnInit {
         err => {
           console.log("ERROR: ");
         }
-      );
+      );*/
   }
 
   ngOnDestroy() {

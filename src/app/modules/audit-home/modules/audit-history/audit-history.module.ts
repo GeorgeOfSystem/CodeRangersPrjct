@@ -6,9 +6,7 @@ import { AuditHistoryRoutingModule } from './audit-history-routing.module';
 
 // Components
 import { AuditHistoryComponent } from './audit-history.component';
-import { ApproveComponent } from "./components/approve/approve.component";
 import { WaitingComponent } from "./components/waiting/waiting.component";
-import { RejectedComponent } from "./components/rejected/rejected.component";
 
 import { A11yModule } from "@angular/cdk/a11y";
 import { ClipboardModule } from "@angular/cdk/clipboard";
@@ -56,9 +54,7 @@ import { MatTreeModule } from "@angular/material/tree";
 @NgModule({
   declarations: [
     AuditHistoryComponent,
-    ApproveComponent,
-    WaitingComponent,
-    RejectedComponent
+    WaitingComponent
   ],
   imports: [
     CommonModule,

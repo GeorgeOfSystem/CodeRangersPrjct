@@ -7,8 +7,9 @@ import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-/*import { FormulariosService } from "../../../../../shared/services/formularios.service";
-import { HistorialService } from "../../../../../shared/services/historial.service";*/
+/*import { FormulariosService } from "../../../../shared/services/formularios.service";
+import { HistorialService } from "../../../../shared/services/historial.service";*/
+import { CKEditorModule } from "ng2-ckeditor";
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { HistorialService } from "../../../../../shared/services/historial.servi
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CKEditorModule
   ],
   declarations: [AprobacionComponent],
   providers: [/*FormulariosService, HistorialService*/]
