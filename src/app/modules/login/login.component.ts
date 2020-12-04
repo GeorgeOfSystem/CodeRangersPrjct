@@ -29,6 +29,8 @@ export class LoginComponent implements OnInit {
           if (form.value.email == "ministerio@bo.com") {
             console.log("LOGIN RESPONSE: ", res);
             this.router.navigate(["home"]);
+          }else {
+            this.router.navigate(["auditHome"]);
           }
         },
         err => {
@@ -38,7 +40,7 @@ export class LoginComponent implements OnInit {
   }
 
   onRegister() {
-    //this.router.navigate(['registration']);
+    this.router.navigate(['register']);
     console.log("Arreglar");
   }
 }

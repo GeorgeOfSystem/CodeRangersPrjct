@@ -24,6 +24,11 @@ const routes: Routes = [
     path: "auditHome",
     loadChildren: () =>
       import("./modules/audit-home/audit-home.module").then(m => m.AuditHomeModule)
+  },
+  {
+    path: "register",
+    loadChildren: () => 
+      import("./modules/registro/registro.module").then(m => m.RegistroModule)
   }
 ];
 
