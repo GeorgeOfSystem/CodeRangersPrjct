@@ -1,11 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DetalleComponent } from './detalle.component';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { DetalleComponent } from "./detalle.component";
+import { DetalleRoutingModule } from "./detalle-routing.module";
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule, DetalleRoutingModule],
   declarations: [DetalleComponent]
 })
-export class DetalleModule { }
+export class DetalleModule {}

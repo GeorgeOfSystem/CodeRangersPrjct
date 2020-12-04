@@ -4,7 +4,11 @@ import { HistorialComponent } from "./historial.component";
 
 const routes: Routes = [
   { path: "", component: HistorialComponent },
-
+  {
+    path: "detalle",
+    loadChildren: () =>
+      import("./modules/detalle/detalle.module").then(m => m.DetalleModule)
+  }
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
