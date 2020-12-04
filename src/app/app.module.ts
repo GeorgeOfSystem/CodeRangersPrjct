@@ -6,7 +6,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { Routes, RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { FormsModule } from "@angular/forms";
-import { AuthService } from "../shared/services/auth.service";
+import { AuthService } from "./shared/services/auth.service";
 
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
