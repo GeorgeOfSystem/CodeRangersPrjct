@@ -32,8 +32,8 @@ export class DataLayerService {
   }
 
   //Update - chage the information of the form [ ID needed ]
-  public updateProduct( id:any, mensaje:any ) : Observable<any> {
-    return this.http.put(`${this.url}/formularios/${id}.json`,mensaje)
+  public updateProduct( mensaje:any ) : Observable<any> {
+    return this.http.put(`${this.url}/formularios/${mensaje.id}.json`,mensaje)
   }
   public updateProductBase( id:any, mensaje:any ,base: string) : Observable<any> {
     return this.http.put(`${this.url}/${base}/${id}.json`,mensaje)

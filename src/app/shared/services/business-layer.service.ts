@@ -38,8 +38,9 @@ export class BusinessLayerService {
   }
 
   //Update - chage the information of the form [ ID needed ]
-  public updateProduct( id:any, mensaje:any ) : Observable<any> {
-    return this.data.updateProduct(id,mensaje);
+  public updateProduct( mensaje:any ) : Observable<any> {
+    console.log(mensaje.id);
+    return this.data.updateProduct(mensaje);
   }
 
   //Delete - remove the form from the database [ ID needed ]

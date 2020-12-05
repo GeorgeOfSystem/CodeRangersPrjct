@@ -29,12 +29,15 @@
 					&nbsp;
 					<div class="form-group">
 						<label for="exampleFormControlTextarea1">Propuesta</label>
-						<p>{{element.propuesta}}</p>
+						<p></p>
+						<pre>{{element.propuesta}}</pre>
 					</div>
-					&nbsp;
-					&nbsp;
+					<label for="exampleFormControlTextarea1">Respuesta</label>
+					<ckeditor [(ngModel)]="ckeditorContent"></ckeditor>
 	</mat-card-content>
+	
 	<mat-card-actions style="text-align:center">
-		<!--button mat-button (click)="onCreate()" >Enviar</button-->
+		<button type="button" class="btn btn-outline-secondary" (click)="setStatus('Aprobado')" >Aceptar</button>
+		<button type="button" class="btn btn-outline-secondary"  (click)="setStatus('Rechazado')" >Rechazar</button>
 	</mat-card-actions>
 </mat-card>

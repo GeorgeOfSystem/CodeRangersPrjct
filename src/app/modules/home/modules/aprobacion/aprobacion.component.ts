@@ -31,7 +31,8 @@ export class AprobacionComponent implements OnInit, OnDestroy {
       requisitos: ["", [Validators.required]],
       propuesta: "",
       ownerId: "",
-      estado: ""
+      estado: "",
+      respuesta: ""
     });
     this.historialForm = this.formBuilder.group({
       sucursal: "",
