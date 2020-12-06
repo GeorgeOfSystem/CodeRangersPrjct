@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/shared/services/auth.service';
 import { BusinessLayerService } from 'src/app/shared/services/business-layer.service';
 
 @Component({
@@ -12,15 +10,11 @@ import { BusinessLayerService } from 'src/app/shared/services/business-layer.ser
 })
 export class AuditApproveComponent implements OnInit {
   element;
-  prueba = "prueba";
   productUpDateSubs: Subscription;
-  historialForm: FormGroup;
   historialSubs: Subscription;
   ckeditorContent;
 
   constructor(
-    //private formBuilder: FormBuilder,
-    //private authService: AuthService,
     private b_Layer: BusinessLayerService,
     private router: Router
   ) {}
@@ -33,7 +27,7 @@ export class AuditApproveComponent implements OnInit {
   onCreate() {}
 
   ngOnDestroy() {
-    this.b_Layer.setCurrentElement(null);
+    this.b_Layer.currentElent=null;
     this.productUpDateSubs ? this.productUpDateSubs.unsubscribe() : "";
   }
 

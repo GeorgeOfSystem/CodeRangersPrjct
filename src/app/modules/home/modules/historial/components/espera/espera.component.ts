@@ -12,7 +12,7 @@ export interface PeriodicElement {
 }
 
 @Component({
-  selector: "app-espera",
+  selector: "espera",
   templateUrl: "./espera.component.html",
   styleUrls: ["./espera.component.css"]
 })
@@ -69,5 +69,10 @@ export class EsperaComponent implements OnInit {
   ngOnDestroy() {
     this.esperaGetSubs ? this.esperaGetSubs.unsubscribe() : "";
     //this.esperaDeleteSubs ? this.esperaDeleteSubs.unsubscribe() : "";
+  }
+
+  sendElement(e){
+    this.b_Layer.currentElent=e;
+    //this.router.navigate(['/auditHome/audit-approve']);
   }
 }

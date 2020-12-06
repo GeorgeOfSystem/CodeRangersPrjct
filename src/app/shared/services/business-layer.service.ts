@@ -82,7 +82,4 @@ export class BusinessLayerService {
     return this.data.deleteProductBase(id,base);
   }
 
-  public setCurrentElement(element){
-    this.currentElent = element;
-  }
 }
