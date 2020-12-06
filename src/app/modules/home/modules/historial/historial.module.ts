@@ -47,7 +47,11 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatTreeModule } from "@angular/material/tree";
+<<<<<<< HEAD
 import { HistorialService } from "../../../../shared/services/historial.service";
+=======
+import { BusinessLayerService } from 'src/app/shared/services/business-layer.service';
+>>>>>>> upstream/pr/11
 
 @NgModule({
   imports: [
@@ -104,6 +108,10 @@ import { HistorialService } from "../../../../shared/services/historial.service"
     EsperaComponent,
     RechazadoComponent
   ],
+<<<<<<< HEAD
   providers: [HistorialService]
+=======
+  providers: [BusinessLayerService]
+>>>>>>> upstream/pr/11
 })
 export class HistorialModule {}

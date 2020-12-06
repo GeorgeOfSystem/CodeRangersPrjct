@@ -28,6 +28,8 @@ export class LoginComponent implements OnInit {
         res => {
           if (form.value.email == "ministerio@bo.com") {
             console.log("LOGIN RESPONSE: ", res);
+            this.router.navigate(["auditHome"]);
+          }else{
             this.router.navigate(["home"]);
           }else {
             this.router.navigate(["auditHome"]);

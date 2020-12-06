@@ -15,5 +15,8 @@
   "angularCompilerOptions":{
     "enableIvy":false
   }
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/pr/11
 }

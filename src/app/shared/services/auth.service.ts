@@ -3,8 +3,12 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { map, catchError } from "rxjs/operators";
 import { Router } from "@angular/router";
+<<<<<<< HEAD:src/app/shared/services/auth.service.ts
 import { environment } from "../../../environments/environment";
 
+=======
+import { environment } from '../../../environments/environment';
+>>>>>>> upstream/pr/11:src/app/shared/services/auth.service.ts
 @Injectable()
 export class AuthService {
   url = environment.auth.apiBaseUrl;
