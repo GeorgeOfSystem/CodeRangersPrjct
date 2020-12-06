@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-import { AuthService } from 'src/shared/services/auth.service';
-=======
-import { AuthService } from "src/app/shared/services/auth.service";
->>>>>>> upstream/pr/11
+import { AuthService } from '../../shared/services/auth.service';
 
 
 @Component({
   selector: 'app-audit-home',
   templateUrl: './audit-home.component.html',
-  styleUrls: ['./audit-home.component.scss']
+  styleUrls: []
 })
 export class AuditHomeComponent implements OnInit {
   
