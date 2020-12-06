@@ -8,7 +8,7 @@ import { BusinessLayerService } from 'src/app/shared/services/business-layer.ser
 @Component({
   selector: 'app-audit-approve',
   templateUrl: './audit-approve.component.html',
-  styleUrls: ['./audit-approve.component.scss']
+  styleUrls: []
 })
 export class AuditApproveComponent implements OnInit {
   element;

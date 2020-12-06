@@ -45,34 +45,3 @@
 	<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 	<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-<<<<<<< HEAD
-
-<body>
-	<div *ngFor="let message of aprobados" style="padding: 50px; display: flex; justify-content: center;">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-					<div class="card card-elegant">
-						<div class="card-block">
-							<h5 class="card-title text-uppercase"><small>Prueba</small>
-							</h5>
-							<p class="card-text text-justify">
-								Su ID: {{message.ownerId}}
-							</p>
-							<p class="card-text text-justify">
-								Sucursal: {{message.sucursal}}
-							</p>
-							<p class="card-text text-justify">
-								Estado: {{message.estado}}
-							</p>
-							<a class="btn btn-link text-uppercase">Atentamente Alerta Covid</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<button type="button" (click)="onDelete(message.id)" class="btn btn-light">Borrar</button>
-		</div>
-	</div>
-</body>
-=======
->>>>>>> upstream/pr/11

@@ -6,13 +6,9 @@ import { HttpClientModule } from "@angular/common/http";
 import { Routes, RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { FormsModule } from "@angular/forms";
-<<<<<<< HEAD
-import { AuthService } from "./shared/services/auth.service";
-=======
 import { AuthService } from './shared/services/auth.service';
 import { BusinessLayerService } from './shared/services/business-layer.service';
 import { DataLayerService } from './shared/services/data-layer.service';
->>>>>>> upstream/pr/11
 
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
