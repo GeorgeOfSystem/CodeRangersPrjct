@@ -35,7 +35,7 @@ export class AuditApproveComponent implements OnInit {
     this.element.estado = status;
     this.productUpDateSubs = this.b_Layer.updateProduct(this.element).subscribe(res => {
       Object.entries(res);
-    })
-    this.router.navigate(["auditHome/audit-history"]);
+      this.router.navigate(["auditHome/audit-history"]);
+    });
   }
 }

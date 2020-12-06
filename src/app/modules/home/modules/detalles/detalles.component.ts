@@ -28,14 +28,16 @@ export class DetallesComponent implements OnInit {
     ) {}
   
     ngOnInit() {
-      this.element = this.b_Layer.currentElent;
+      console.log( this.b_Layer.currentElementEdit );
+      this.element = this.b_Layer.currentElementEdit;
+      
       //this.element == null ? this.router.navigate(["auditHome/audit-history"]) : "";
     }
   
     onCreate() {}
   
     ngOnDestroy() {
-      this.b_Layer.currentElent=null;
+      this.b_Layer.currentElementEdit=null;
       this.productUpDateSubs ? this.productUpDateSubs.unsubscribe() : "";
     }
   

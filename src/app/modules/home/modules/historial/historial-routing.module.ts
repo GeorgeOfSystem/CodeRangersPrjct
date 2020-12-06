@@ -3,12 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { HistorialComponent } from "./historial.component";
 
 const routes: Routes = [
-  { path: "", component: HistorialComponent },
-  {
-    path: "detalle",
-    loadChildren: () =>
-      import("./modules/detalle/detalle.module").then(m => m.DetalleModule)
-  }
+  { path: "", component: HistorialComponent }
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

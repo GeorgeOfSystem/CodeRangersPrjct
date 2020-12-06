@@ -7,6 +7,7 @@ import { environment } from '../../../environments/environment';
 @Injectable()
 export class BusinessLayerService {
   currentElent;
+  currentElementEdit;
   url = environment.app.apiBaseUrl;
   productGetSubs: Subscription;
   products = []
