@@ -1,5 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
+import { elementAt } from 'rxjs/operators';
 import { BusinessLayerService } from 'src/app/shared/services/business-layer.service';
 import { AuthService } from "../../../../../../shared/services/auth.service";
 
@@ -30,6 +31,8 @@ export class EsperaComponent implements OnInit {
   dataSource = [];
   esperaGetSubs: Subscription;
   esperaDeleteSubs: Subscription;
+  @Input() status
+
   constructor(
     private authService: AuthService,
     private b_Layer: BusinessLayerService
@@ -43,11 +46,11 @@ export class EsperaComponent implements OnInit {
     this.espera = [];
     const userId = this.authService.getUserId();
     this.esperaGetSubs = this.b_Layer
-      .getProductsByIdBase(userId,"historial")
+      .getProductsById(userId)
       .subscribe(res => {
         Object.entries(res).map((p: any) => {
-          if (p[1].estado == "En Espera") {
-            this.espera.push({ id: p[0], ...p[1] });
+          if (p[1][1].estado == this.status) {
+            this.espera.push({ id: p[1][0], ...p[1][1] });
             this.dataSource = this.espera;
           }
         });
@@ -55,7 +58,7 @@ export class EsperaComponent implements OnInit {
   }
 
   onDelete(id: any): void {
-    this.esperaDeleteSubs = this.b_Layer.deleteProductBase(id,"historial").subscribe(
+    this.esperaDeleteSubs = this.b_Layer.deleteProduct(id).subscribe(
       res => {
         console.log("RESPONSE: ", res);
         this.loadProduct();

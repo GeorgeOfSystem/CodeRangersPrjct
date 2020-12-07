@@ -8,7 +8,6 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { FormsModule } from "@angular/forms";
 import { AuthService } from './shared/services/auth.service';
 import { BusinessLayerService } from './shared/services/business-layer.service';
-import { DataLayerService } from './shared/services/data-layer.service';
 
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
@@ -44,7 +43,7 @@ const routes: Routes = [
     NgbModule,
     FormsModule
   ],
-  providers: [AuthService,BusinessLayerService,DataLayerService],
+  providers: [AuthService,BusinessLayerService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

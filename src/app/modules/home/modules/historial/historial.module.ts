@@ -2,9 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { HistorialComponent } from "./historial.component";
 import { HistorialRoutingModule } from "./historial-routing.module";
-import { AprobadoComponent } from "./components/aprobado/aprobado.component";
 import { EsperaComponent } from "./components/espera/espera.component";
-import { RechazadoComponent } from "./components/rechazado/rechazado.component";
 import { A11yModule } from "@angular/cdk/a11y";
 import { ClipboardModule } from "@angular/cdk/clipboard";
 import { DragDropModule } from "@angular/cdk/drag-drop";
@@ -100,9 +98,7 @@ import { BusinessLayerService } from 'src/app/shared/services/business-layer.ser
   ],
   declarations: [
     HistorialComponent,
-    AprobadoComponent,
-    EsperaComponent,
-    RechazadoComponent
+    EsperaComponent
   ],
   providers: [BusinessLayerService]
 })

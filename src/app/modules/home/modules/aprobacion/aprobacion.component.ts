@@ -45,31 +45,31 @@ export class AprobacionComponent implements OnInit, OnDestroy {
   onCreate() {
     console.log("Form group: ", this.formularioForm.value);
     this.b_LayerSubs = this.b_Layer
-      .addProductBase({
+      .addProduct({
         ...this.formularioForm.value,
         ownerId: this.authService.getUserId(),
         estado: "En Espera",
         propuesta: this.ckeditorContent
-      },"formularios")
+      })
       .subscribe(
         res => {
           console.log("Resp: ", res);
-          this.historialSubs = this.b_Layer
-            .addProductBase({
-              sucursal: this.formularioForm.value.direccion,
-              negocio: this.formularioForm.value.negocio,
-              estado: "En Espera",
-              ownerId: this.authService.getUserId()
-            },"historial")
-            .subscribe(
-              res => {
-                console.log("Resp: ", res);
-              },
-              err => {
-                console.log("Error de servidor");
-              }
-            );
-          this.router.navigate(["historial"]);
+          // this.historialSubs = this.b_Layer
+          //   .addProduct({
+          //     sucursal: this.formularioForm.value.direccion,
+          //     negocio: this.formularioForm.value.negocio,
+          //     estado: "En Espera",
+          //     ownerId: this.authService.getUserId()
+          //   })
+          //   .subscribe(
+          //     res => {
+          //       console.log("Resp: ", res);
+          //     },
+          //     err => {
+          //       console.log("Error de servidor");
+          //     }
+          //   );
+          this.router.navigate(["/home/historial"]);
         },
         err => {
           console.log("Error de servidor");

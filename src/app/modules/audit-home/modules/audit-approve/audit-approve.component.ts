@@ -27,21 +27,23 @@ export class AuditApproveComponent implements OnInit {
 
   ngOnInit() {
     this.element = this.b_Layer.currentElent;
+    console.log(this.element);
     this.element == null ? this.router.navigate(["auditHome/audit-history"]) : "";
   }
 
   onCreate() {}
 
   ngOnDestroy() {
-    this.b_Layer.setCurrentElement(null);
+    this.b_Layer.currentElent = null;
     this.productUpDateSubs ? this.productUpDateSubs.unsubscribe() : "";
   }
 
   setStatus(status:string):void{
     this.element.estado = status;
     this.productUpDateSubs = this.b_Layer.updateProduct(this.element).subscribe(res => {
-      Object.entries(res);
-    })
-    this.router.navigate(["auditHome/audit-history"]);
+      // Object.entries(res);
+      this.router.navigate(["auditHome/audit-history"]);
+    });
+    
   }
 }
