@@ -1,7 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
+import { elementAt } from 'rxjs/operators';
+import { BusinessLayerService } from 'src/app/shared/services/business-layer.service';
 import { AuthService } from "../../../../../../shared/services/auth.service";
-import { HistorialService } from "../../../../../../shared/services/historial.service";
+
 
 export interface PeriodicElement {
   name: string;
@@ -29,9 +31,11 @@ export class EsperaComponent implements OnInit {
   dataSource = [];
   esperaGetSubs: Subscription;
   esperaDeleteSubs: Subscription;
+  @Input() status
+
   constructor(
     private authService: AuthService,
-    private historialService: HistorialService
+    private b_Layer: BusinessLayerService
   ) {}
 
   ngOnInit() {
@@ -41,12 +45,12 @@ export class EsperaComponent implements OnInit {
   loadProduct(): void {
     this.espera = [];
     const userId = this.authService.getUserId();
-    this.esperaGetSubs = this.historialService
+    this.esperaGetSubs = this.b_Layer
       .getProductsById(userId)
       .subscribe(res => {
         Object.entries(res).map((p: any) => {
-          if (p[1].estado == "En Espera") {
-            this.espera.push({ id: p[0], ...p[1] });
+          if (p[1][1].estado == this.status) {
+            this.espera.push({ id: p[1][0], ...p[1][1] });
             this.dataSource = this.espera;
           }
         });
@@ -54,7 +58,7 @@ export class EsperaComponent implements OnInit {
   }
 
   onDelete(id: any): void {
-    this.esperaDeleteSubs = this.historialService.deleteProduct(id).subscribe(
+    this.esperaDeleteSubs = this.b_Layer.deleteProduct(id).subscribe(
       res => {
         console.log("RESPONSE: ", res);
         this.loadProduct();
@@ -67,6 +71,6 @@ export class EsperaComponent implements OnInit {
 
   ngOnDestroy() {
     this.esperaGetSubs ? this.esperaGetSubs.unsubscribe() : "";
-    this.esperaDeleteSubs ? this.esperaDeleteSubs.unsubscribe() : "";
+    //this.esperaDeleteSubs ? this.esperaDeleteSubs.unsubscribe() : "";
   }
 }

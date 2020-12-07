@@ -1,12 +1,12 @@
 <mat-tab-group mat-align-tabs="center">
 	<mat-tab label="En espera">
-		<app-espera></app-espera>
+		<app-espera status="En Espera"></app-espera>
 	</mat-tab>
 	<mat-tab label="Aprobado">
-		<app-aprobado></app-aprobado>
+		<app-espera status="Aprobado"></app-espera>
 	</mat-tab>
 	<mat-tab label="Rechazado">
-		<app-rechazado></app-rechazado>
+		<app-espera status="Rechazado"></app-espera>
 	</mat-tab>
 </mat-tab-group>
 <router-outlet></router-outlet>

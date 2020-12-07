@@ -7,9 +7,8 @@ import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { FormulariosService } from "../../../../shared/services/formularios.service";
-import { HistorialService } from "../../../../shared/services/historial.service";
 import { CKEditorModule } from "ng2-ckeditor";
+import { BusinessLayerService } from 'src/app/shared/services/business-layer.service';
 
 @NgModule({
   imports: [
@@ -24,6 +23,6 @@ import { CKEditorModule } from "ng2-ckeditor";
     CKEditorModule
   ],
   declarations: [AprobacionComponent],
-  providers: [FormulariosService, HistorialService]
+  providers: [BusinessLayerService]
 })
 export class AprobacionModule {}
