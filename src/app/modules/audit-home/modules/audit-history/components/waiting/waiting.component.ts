@@ -39,7 +39,7 @@ export class WaitingComponent implements OnInit {
   }
 
   sendElement(e){
-    this.b_Layer.currentElent=e;
+    this.b_Layer.currentElent = e;
     this.router.navigate(['/auditHome/audit-approve']);
   }
 }

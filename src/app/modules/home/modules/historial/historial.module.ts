@@ -1,13 +1,8 @@
-//Modules
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { HistorialRoutingModule } from "./historial-routing.module";
-//Componentes
 import { HistorialComponent } from "./historial.component";
+import { HistorialRoutingModule } from "./historial-routing.module";
 import { EsperaComponent } from "./components/espera/espera.component";
-//services
-import { BusinessLayerService } from 'src/app/shared/services/business-layer.service';
-//angular modules
 import { A11yModule } from "@angular/cdk/a11y";
 import { ClipboardModule } from "@angular/cdk/clipboard";
 import { DragDropModule } from "@angular/cdk/drag-drop";
@@ -16,7 +11,6 @@ import { ScrollingModule } from "@angular/cdk/scrolling";
 import { CdkStepperModule } from "@angular/cdk/stepper";
 import { CdkTableModule } from "@angular/cdk/table";
 import { CdkTreeModule } from "@angular/cdk/tree";
-//angular material modules
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatBottomSheetModule } from "@angular/material/bottom-sheet";
@@ -51,6 +45,7 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatTreeModule } from "@angular/material/tree";
+import { BusinessLayerService } from 'src/app/shared/services/business-layer.service';
 
 @NgModule({
   imports: [

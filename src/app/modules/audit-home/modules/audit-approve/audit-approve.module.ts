@@ -22,6 +22,7 @@ import { CKEditorModule } from 'ng2-ckeditor';
     MatInputModule,
     ReactiveFormsModule,
     CKEditorModule
+
   ]
 })
 export class AuditApproveModule { }
