@@ -8,10 +8,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CKEditorModule } from 'ng2-ckeditor';
+import { DetalleComponent } from './detalle.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [DetalleComponent],
   imports: [
     CommonModule,
     DetalleRoutingModule,
