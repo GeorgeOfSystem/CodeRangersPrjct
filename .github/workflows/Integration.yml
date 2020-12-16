@@ -16,7 +16,5 @@ jobs:
       - name: build
         run: ng build
       - run: sudo apt-get install rar
-      - run: sudo dnf install rar
-      - run: yum install rar
       - name: Adding rar
         run: rar a dist.rar dist
