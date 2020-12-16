@@ -13,8 +13,12 @@ jobs:
         run: npm install
       - name: angular cli instalation
         run: npm install -g @angular/cli
-      - name: build
+      - name: Build
         run: ng build
       - run: sudo apt-get install rar
-      - name: Adding rar
+      - name: rar creation
         run: rar a dist.rar dist
+      - name: rar addition
+        uses: actions/upload-artifact@v2
+        with:
+          path: dist.rar
