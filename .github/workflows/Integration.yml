@@ -9,10 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
-      - name: before_script
+      - name: node_module instalation
         run: npm install
+      - name: angular cli instalation
         run: npm install -g @angular/cli
       - name: script
         run: ng build
-        run: ng build --prod
-      - name: after_sucess
