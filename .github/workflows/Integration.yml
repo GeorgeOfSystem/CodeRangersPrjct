@@ -22,3 +22,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           path: dist.rar
+      - run: https://github.com/GeorgeOfSystem/CodeRangersPrjct/releases/tag/v1.0.0/new?body=dist.rar 
