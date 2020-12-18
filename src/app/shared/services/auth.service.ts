@@ -11,6 +11,11 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
+  public register(body: any): Observable<any> {
+    return this.http.post(`${this.url}/v1/accounts:signUp?key=${this.key}`, body)
+    
+  }
+
   public login(body: any): Observable<any> {
     return this.http
       .post(`${this.url}/v1/accounts:signInWithPassword?key=${this.key}`, body)

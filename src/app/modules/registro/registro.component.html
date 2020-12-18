@@ -1,2 +1,86 @@
-<p>registro works!</p>
-<h1>Aqui va el Register Form</h1>
+<div style="display: flex; flex-direction: column; max-width: 800px;">
+	<img src="https://www.ovt.mintrabajo.gob.bo/assets/images/logo-mteps.png" style="width: 200px; align-self: center;">
+	&nbsp;
+	<h1 style="margin-top: 20px; font-family: 'Times New Roman', Times, serif; text-align: center;"><b>Registra a tu Empresa</b></h1>
+
+	<mat-card class="example-card" style="width:300px; align-self: center;">
+		<mat-card-header>
+			<!--<div mat-card-avatar class="example-header-image"></div>-->
+			<mat-card-title style="font-family: 'Times New Roman', Times, serif;">REGISTRO</mat-card-title>
+		</mat-card-header>
+		<mat-card-content>
+			<form #form="ngForm" style="display: flex; flex-direction: column;">
+
+				<mat-form-field style="padding-top: 20px;">
+					<mat-label>Nombre de la Empresa</mat-label>
+					<input matInput
+				type="text"
+				name="name"
+				ngModel
+				#name="ngModel"
+				required>
+				</mat-form-field>
+				<div *ngIf="name.invalid && (name.touched || name.dirty)" class="alert alert-danger">
+					<div *ngIf="emailUI.errors.required">
+						Se requiere un nombre de empresa
+					</div>
+				</div>
+
+				<mat-form-field style="padding-top: 20px;">
+					<mat-label>E-mail</mat-label>
+					<input matInput
+				type="text"
+				name="email"
+				ngModel
+				#emailUI="ngModel"
+				required>
+				</mat-form-field>
+				<div *ngIf="emailUI.invalid && (emailUI.touched || emailUI.dirty)" class="alert alert-danger">
+					<div *ngIf="emailUI.errors.required">
+						Se requiere un e-mail
+					</div>
+				</div>
+
+				<mat-form-field style="padding-top: 20px;">
+					<mat-label>Contraseña</mat-label>
+					<input matInput
+				type="password"
+				name="password"
+				ngModel
+				#passwordUI="ngModel"
+				required>
+					
+				</mat-form-field>
+				<div *ngIf="passwordUI.invalid && (passwordUI.touched || passwordUI.dirty)" class="alert alert-danger">
+					<div *ngIf="passwordUI.errors.required">
+						Se requiere una contraseña
+					</div>
+				</div>
+
+				<mat-form-field style="padding-top: 20px;">
+					<mat-label>Número de Teléfono</mat-label>
+					<input matInput
+				type="text"
+				name="number"
+				ngModel
+				#number="ngModel">
+				</mat-form-field>
+
+				<mat-form-field style="padding-top: 20px;">
+					<mat-label>Dirección</mat-label>
+					<input matInput
+				type="text"
+				name="direction"
+				ngModel
+				#direction="ngModel">
+				</mat-form-field>
+			</form>
+		</mat-card-content>
+		<mat-card-actions style="text-align:center">
+			<!--<button mat-button  (click)="returnLogin()" >Login</button>-->
+            <button mat-button [disabled]="form.invalid" (click)="onRegister(form)" >Registrar</button><br>
+			<a href="/login">¿Ya tienes una cuenta?</a>
+		</mat-card-actions>
+	</mat-card>
+
+</div>
