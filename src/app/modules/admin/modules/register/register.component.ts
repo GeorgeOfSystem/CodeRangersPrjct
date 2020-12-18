@@ -9,6 +9,8 @@ import { UserService } from 'src/app/shared/services/user.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  formularioForm: FormGroup;
+
 
   constructor(
   

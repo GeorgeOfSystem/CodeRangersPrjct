@@ -1,56 +1,52 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { UserService } from "src/app/shared/services/user.service";
 
+export interface PeriodicElement {
+  id:string;
+  mail:string;
+  tipo:string;
+}
 
 @Component({
-  selector: "app-empresa",
+  selector: "empresa",
   templateUrl: "./empresa.component.html",
   styleUrls: ["./empresa.component.scss"]
 })
 export class EmpresaComponent implements OnInit,  OnDestroy {
+  @Input() state;
 
-  displayedColumns: string[] = [
-    "id",
-    "mail",
-    "tipo",
-    "detalles",
-    "delete",
-    "update"
-  ];
+  products = [];
+  productGetSubs: Subscription;
+  displayedColumns: string[];
+  dataSource;
 
-  users1 = [];
-  dataSource1 = [];
-  userGetSubs: Subscription;
-  userDeleteSubs: Subscription;
-
+  /**
+  sendElement(e){
+    this.b_Layer.currentElent = e;
+    this.router.navigate(['/auditHome/audit-approve']);
+  }
+}
+  */
   constructor(
     private userService: UserService
   ) {}
 
   ngOnInit() {
     this.loadProduct();
-    //this.dataSource = this.users;
   }
 
   loadProduct(): void {
-    this.users1 = [];
-    this.dataSource1=[];
-    this.userGetSubs = this.userService
-      .getUser()
-      .subscribe(res => {
-        Object.entries(res).map((p: any) => {
-        if (p[1].tipo=='Empresa') {
-          this.users1.push(p[1]);
-          this.dataSource1 = this.users1;
-          console.log("Data Empresa ",this.dataSource1)
-          }
-        });
-      });
+    this.products = [];
+    this.productGetSubs = this.userService.getUser().subscribe(res => {
+      Object.entries(res).map((p: any) => this.products.push({id: p[0], ...p[1]}));
+      this.displayedColumns = ["id", "mail", "type","update","delete"];
+      this.dataSource = this.products.filter( s => s.tipo == this.state ) ;
+    });
   }
 
   onDelete(id: any): void {
-    this.userDeleteSubs = this.userService.deleteUser(id).subscribe(
+    /*this.userDeleteSubs = this.userService.deleteUser(id).subscribe(
       res => {
         console.log("RESPONSE: ", res);
         this.loadProduct();
@@ -58,11 +54,11 @@ export class EmpresaComponent implements OnInit,  OnDestroy {
       err => {
         console.log("ERROR: ");
       }
-    );
+    );*/
   }
 
   ngOnDestroy() {
-    this.userGetSubs ? this.userGetSubs.unsubscribe() : "";
-    this.userDeleteSubs ? this.userDeleteSubs.unsubscribe() : "";
+    /*this.userGetSubs ? this.userGetSubs.unsubscribe() : "";
+    this.userDeleteSubs ? this.userDeleteSubs.unsubscribe() : "";*/
   }
 }

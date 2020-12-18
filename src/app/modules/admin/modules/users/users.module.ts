@@ -49,13 +49,11 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatTreeModule } from "@angular/material/tree";
 import { UserService } from 'src/app/shared/services/user.service';
 import { EmpresaComponent } from './components/empresa/empresa.component';
-import { AuditorComponent } from './components/auditor/auditor.component';
 
 @NgModule({
   declarations: [ 
     UsersComponent,
-    EmpresaComponent,
-    AuditorComponent,
+    EmpresaComponent
   ],
   imports: [
     CommonModule,
