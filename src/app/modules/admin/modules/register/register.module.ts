@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CKEditorModule } from 'ng2-ckeditor';
+import { UserService } from 'src/app/shared/services/user.service';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import { CKEditorModule } from 'ng2-ckeditor';
     MatInputModule,
     ReactiveFormsModule,
     CKEditorModule
-  ]
+  ],providers: [UserService]
 })
 export class RegisterModule { }
  
