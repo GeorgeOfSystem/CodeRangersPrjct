@@ -11,7 +11,7 @@ export class UserService {
 
   public getUsersById(id: any): Observable<any> {
     return this.http.get(
-      `${this.url}/usuarios.json?orderBy="ownerId"&equalTo="${id}"&print=pretty`
+      `${this.url}/usuarios.json?orderBy="id"&equalTo="${id}"&print=pretty`
     );
   }
   public addUser(mensaje: any): Observable<any> {
