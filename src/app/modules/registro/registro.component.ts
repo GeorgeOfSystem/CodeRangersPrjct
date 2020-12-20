@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { UserService } from '../../shared/services/user.service'
 
 @Component({
   selector: 'app-registro',
@@ -9,7 +10,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class RegistroComponent implements OnInit {
 
-  constructor(private router: Router, private auth: AuthService) { }
+  constructor(private router: Router, private auth: AuthService, private userSer: UserService) { }
 
   ngOnInit(): void {
   }
@@ -27,7 +28,24 @@ export class RegistroComponent implements OnInit {
     }).subscribe(
       res => {
         alert(`Se registro a la empresa ${form.value.name}`);
-        //TODO guardar el usuario en la base de datos
+        // TODO guardar el usuario en la base de datos
+        this.userSer.addUser({
+          id: res.localId,
+          mail: res.email,
+          name: form.value.name,
+          number: form.value.number,
+          direction: form.value.direction,
+          type: 'Empresa'
+        }).subscribe(
+          dbres => {
+            console.log("da success", dbres)
+          },
+          dberr => {
+            console.log("db Error", dberr)
+          }
+        )
+
+        // console.log(res)
         this.router.navigate(['login'])
       },
       err => {
