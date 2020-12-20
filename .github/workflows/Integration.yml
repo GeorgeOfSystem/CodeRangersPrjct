@@ -15,10 +15,7 @@ jobs:
         run: npm install -g @angular/cli
       - name: Build
         run: ng build
-      - run: sudo apt-get install rar
-      - name: rar creation
-        run: rar a dist.rar dist
       - name: zip addition
         uses: actions/upload-artifact@v2
         with:
-          path: dist.rar
+          path: dist
